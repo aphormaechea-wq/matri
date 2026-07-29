@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ita &amp; Ricky · Matrimonio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;
+    --paper:#fbfbfa;
+    --ink:#1a1a18;
+    --ink-soft:#5c5c54;
+    --line: rgba(26,26,24,0.15);
+    --gold:#a6873c;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--white); color:var(--ink); font-family:'EB Garamond', serif; font-size:18px; line-height:1.65; overflow-x:hidden;}
+  .display{font-family:'Bodoni Moda', serif;}
+  .eyebrow{font-family:'Jost', sans-serif; font-weight:500; font-size:0.68rem; letter-spacing:0.34em; text-transform:uppercase; color:var(--ink-soft);}
+  section{padding:5rem 1.5rem; max-width:720px; margin:0 auto; position:relative;}
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .9s ease, transform .9s ease;}
+  .reveal.in{opacity:1; transform:none;}
+  @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none;} html{scroll-behavior:auto;}}
+  hr.hair{border:none; border-top:1px solid var(--line); width:56px; margin:2rem auto;}
+
+  .hero{text-align:center; padding-top:4.5rem; padding-bottom:1.5rem;}
+  .hero .eyebrow{margin-bottom:0.8rem;}
+  .hero h1{font-size:clamp(2.8rem, 10vw, 5rem); font-weight:500; letter-spacing:0.02em; line-height:0.95;}
+  .hero h1 em{font-style:italic; font-weight:400; color:var(--ink-soft);}
+  .date-place{margin-top:1rem; letter-spacing:0.16em; text-transform:uppercase; font-family:'Jost', sans-serif; font-size:0.85rem; color:var(--ink-soft);}
+
+  .strip-outer{width:100vw; position:relative; left:50%; margin-left:-50vw; margin-top:2.5rem;}
+  .strip{display:grid; grid-auto-flow:column; grid-auto-columns:1fr; gap:2px; background:var(--white);}
+  .slot{position:relative; aspect-ratio:3/4; background:var(--paper); overflow:hidden;}
+  .slot img{width:100%; height:100%; object-fit:cover; filter:grayscale(100%) contrast(1.05); display:block;}
+
+  .countdown{text-align:center;}
+  .countdown .eyebrow{display:block; margin-bottom:1.6rem;}
+  .clocks{display:flex; justify-content:center; gap:clamp(1rem,4vw,2.8rem); flex-wrap:wrap;}
+  .clock .num{font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(2.8rem, 8vw, 3.8rem); line-height:1; font-variant-numeric:tabular-nums;}
+  .clock .lab{font-family:'Jost', sans-serif; font-size:0.65rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--ink-soft); margin-top:0.5rem; display:block;}
+
+  .section-head{text-align:center; margin-bottom:2.4rem;}
+  .section-head h2{font-size:clamp(2rem, 5.5vw, 2.7rem); font-weight:500; letter-spacing:0.01em; margin-top:0.5rem;}
+  .section-head p{color:var(--ink-soft); margin-top:0.7rem;}
+
+  .cards{display:grid; gap:1.3rem;}
+  .card{border:1px solid var(--line); padding:1.9rem 1.7rem; background:var(--white);}
+  .card h3{font-family:'Bodoni Moda', serif; font-size:1.5rem; font-weight:500;}
+  .card p{margin-top:0.35rem; color:var(--ink-soft); font-size:0.98rem;}
+  .code-row{margin-top:1rem; display:flex; align-items:center; gap:0.8rem; flex-wrap:wrap;}
+  .code{font-family:'Jost', sans-serif; letter-spacing:0.12em; border:1px dashed var(--gold); color:var(--ink); padding:0.35rem 0.8rem; font-size:0.85rem; background:rgba(166,135,60,0.06);}
+  .copy-btn{border:1px solid var(--ink); background:transparent; color:var(--ink); font-family:'Jost', sans-serif; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; padding:0.45rem 0.9rem; cursor:pointer; transition:background .2s, color .2s;}
+  .copy-btn:hover, .copy-btn:focus-visible{background:var(--ink); color:var(--white);}
+
+  .soon{text-align:center; border:1px solid var(--line); padding:3rem 1.5rem;}
+  .soon p{color:var(--ink-soft); margin-top:0.6rem; font-size:0.95rem;}
+
+  .gift-grid{display:grid; gap:1.3rem;}
+
+  .trivia-box{border:1px solid var(--line); padding:2.2rem 1.8rem; text-align:center;}
+  .trivia-q{font-family:'Bodoni Moda', serif; font-size:1.4rem; margin-bottom:1.2rem;}
+  .trivia-opts{display:flex; justify-content:center; gap:0.7rem; flex-wrap:wrap; margin-bottom:1rem;}
+  .opt{border:1px solid var(--ink); background:transparent; padding:0.5rem 1.1rem; font-family:'EB Garamond', serif; font-size:0.95rem; cursor:pointer; color:var(--ink); transition:background .2s, color .2s;}
+  .opt:hover, .opt:focus-visible{background:var(--ink); color:var(--white);}
+  .opt.correct{background:#3f4f3e; border-color:#3f4f3e; color:var(--white);}
+  .opt.wrong{background:#b04a3f; border-color:#b04a3f; color:var(--white);}
+  .feedback{min-height:1.6rem; font-style:italic; color:var(--ink-soft);}
+  .trivia-progress{font-family:'Jost',sans-serif; font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:1rem;}
+  .trivia-final{display:none;}
+  .trivia-final.show{display:block;}
+
+  footer{text-align:center; padding:3.5rem 1.5rem 5rem;}
+  footer .display{font-size:1.7rem; font-style:italic; color:var(--ink-soft);}
+  footer p{margin-top:0.6rem; color:var(--ink-soft); font-family:'Jost',sans-serif; font-size:0.75rem; letter-spacing:0.1em;}
+
+  @media (min-width:640px){
+    .cards{grid-template-columns:1fr 1fr;}
+    .gift-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <span class="eyebrow">Matrimonio</span>
+  <h1>Ita <em>&amp;</em> Ricky</h1>
+  <div class="date-place">16 · 01 · 2027 — Puerto Varas</div>
+</section>
+
+<!-- FOTOS: guarda tus jpg dentro de una carpeta "fotos" en el repo y
+     cambia los nombres de archivo abajo (foto1.jpg, foto2.jpg, etc). -->
+<div class="strip-outer">
+  <div class="strip">
+    <div class="slot"><img src="fotos/foto1.jpg" alt="Ita y Ricky"></div>
+    <div class="slot"><img src="fotos/foto2.jpg" alt="Ita y Ricky"></div>
+    <div class="slot"><img src="fotos/foto3.jpg" alt="Ita y Ricky"></div>
+    <div class="slot"><img src="fotos/foto4.jpg" alt="Ita y Ricky"></div>
+  </div>
+</div>
+
+<hr class="hair reveal">
+
+<section class="countdown reveal">
+  <span class="eyebrow">Faltan</span>
+  <div class="clocks">
+    <div class="clock"><span class="num" id="cd-days">00</span><span class="lab">Días</span></div>
+    <div class="clock"><span class="num" id="cd-hours">00</span><span class="lab">Horas</span></div>
+    <div class="clock"><span class="num" id="cd-mins">00</span><span class="lab">Min</span></div>
+    <div class="clock"><span class="num" id="cd-secs">00</span><span class="lab">Seg</span></div>
+  </div>
+</section>
+
+<section id="hospedaje">
+  <div class="section-head reveal">
+    <span class="eyebrow">Para tu estadía</span>
+    <h2 class="display">Hospedaje</h2>
+    <p>Los descuentos que conseguimos para quienes nos visiten en Puerto Varas.</p>
+  </div>
+  <div class="cards reveal">
+    <div class="card">
+      <!-- EDITA AQUÍ: nombre, descripción y código del hotel -->
+      <h3>[Nombre del hotel]</h3>
+      <p>[Breve descripción — ubicación, vista al lago, etc.]</p>
+      <div class="code-row">
+        <span class="code" id="code-hotel">ITARICKY10</span>
+        <button class="copy-btn" data-copy="code-hotel">Copiar código</button>
+      </div>
+    </div>
+    <div class="card">
+      <!-- EDITA AQUÍ: nombre, descripción y código de las cabañas -->
+      <h3>[Nombre de cabañas]</h3>
+      <p>[Breve descripción — capacidad, cercanía, etc.]</p>
+      <div class="code-row">
+        <span class="code" id="code-cabanas">CABANASIR</span>
+        <button class="copy-btn" data-copy="code-cabanas">Copiar código</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hair reveal">
+
+<section id="transporte">
+  <div class="section-head reveal">
+    <span class="eyebrow">Cómo llegar</span>
+    <h2 class="display">Transporte</h2>
+  </div>
+  <!-- EDITA AQUÍ el texto de transporte cuando lo tengan listo -->
+  <div class="soon reveal">
+    <p>Estamos cerrando los datos de transporte hacia Puerto Varas. Apenas los tengamos, aparecerán aquí — vuelve a revisar esta página más adelante.</p>
+  </div>
+</section>
+
+<hr class="hair reveal">
+
+<section id="regalos">
+  <div class="section-head reveal">
+    <span class="eyebrow">Si quieres tener un gesto con nosotros</span>
+    <h2 class="display">Regalos</h2>
+    <p>Tu presencia es lo más importante. Si además quieres hacernos un regalo, puedes encontrarnos en:</p>
+  </div>
+  <div class="gift-grid reveal">
+    <div class="card">
+      <!-- EDITA AQUÍ: lista de regalos 1 -->
+      <h3>Falabella — Lista de Novios</h3>
+      <p>[Nombre de la lista o link de búsqueda]</p>
+      <div class="code-row">
+        <span class="code" id="code-falabella">ITA-RICKY-2027</span>
+        <button class="copy-btn" data-copy="code-falabella">Copiar código</button>
+      </div>
+    </div>
+    <div class="card">
+      <!-- EDITA AQUÍ: lista de regalos 2 -->
+      <h3>[Otra tienda / lista]</h3>
+      <p>[Descripción breve]</p>
+      <div class="code-row">
+        <span class="code" id="code-otra">PENDIENTE</span>
+        <button class="copy-btn" data-copy="code-otra">Copiar código</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hair reveal">
+
+<section id="trivia">
+  <div class="section-head reveal">
+    <span class="eyebrow">Un poco de nosotros</span>
+    <h2 class="display">¿Qué tanto nos conoces?</h2>
+  </div>
+  <div class="trivia-box reveal" id="trivia-box">
+    <div id="trivia-active">
+      <div class="trivia-progress" id="trivia-progress">Pregunta 1 de 3</div>
+      <div class="trivia-q" id="trivia-question">[Pregunta 1 sobre la pareja]</div>
+      <div class="trivia-opts" id="trivia-opts"></div>
+      <div class="feedback" id="trivia-feedback">&nbsp;</div>
+    </div>
+    <div class="trivia-final" id="trivia-final">
+      <p class="trivia-q" id="trivia-final-text"></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="display">Gracias por acompañarnos</span>
+  <p>ITA &amp; RICKY · 16.01.2027 · PUERTO VARAS</p>
+</footer>
+
+<script>
+  // ---- EDITA AQUÍ las preguntas de la trivia ----
+  const questions = [
+    { q:"[Ej: ¿En qué ciudad se conocieron Ita y Ricky?]", opts:["[Opción A]","[Opción B]","[Opción C]"], correct:0 },
+    { q:"[Ej: ¿Cuál fue su primera cita?]", opts:["[Opción A]","[Opción B]","[Opción C]"], correct:1 },
+    { q:"[Ej: ¿Cuánto tiempo llevan juntos?]", opts:["[Opción A]","[Opción B]","[Opción C]"], correct:2 }
+  ];
+
+  const target = new Date("2027-01-16T17:00:00-04:00").getTime();
+  function updateCountdown(){
+    const diff = Math.max(0, target - Date.now());
+    document.getElementById('cd-days').textContent = String(Math.floor(diff/86400000)).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+    document.getElementById('cd-secs').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  document.querySelectorAll('.copy-btn').forEach(btn=>{
+    btn.addEventListener('click', async ()=>{
+      const code = document.getElementById(btn.dataset.copy).textContent;
+      try{
+        await navigator.clipboard.writeText(code);
+        const orig = btn.textContent;
+        btn.textContent = '¡Copiado!';
+        setTimeout(()=>{btn.textContent = orig;}, 1500);
+      }catch(e){ btn.textContent = code; }
+    });
+  });
+
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+  let current = 0, score = 0;
+  const optsWrap = document.getElementById('trivia-opts');
+  const qEl = document.getElementById('trivia-question');
+  const progEl = document.getElementById('trivia-progress');
+  const fbEl = document.getElementById('trivia-feedback');
+
+  function renderQuestion(){
+    const item = questions[current];
+    qEl.textContent = item.q;
+    progEl.textContent = `Pregunta ${current+1} de ${questions.length}`;
+    fbEl.innerHTML = '&nbsp;';
+    optsWrap.innerHTML = '';
+    item.opts.forEach((opt,i)=>{
+      const b = document.createElement('button');
+      b.className = 'opt';
+      b.textContent = opt;
+      b.addEventListener('click', ()=>handleAnswer(i,b));
+      optsWrap.appendChild(b);
+    });
+  }
+  function handleAnswer(i, btn){
+    const item = questions[current];
+    const allBtns = optsWrap.querySelectorAll('.opt');
+    allBtns.forEach(b=>b.disabled = true);
+    if(i === item.correct){
+      btn.classList.add('correct');
+      fbEl.textContent = '¡Correcto!';
+      score++;
+    } else {
+      btn.classList.add('wrong');
+      allBtns[item.correct].classList.add('correct');
+      fbEl.textContent = 'Casi...';
+    }
+    setTimeout(()=>{
+      current++;
+      if(current < questions.length){
+        renderQuestion();
+      } else {
+        document.getElementById('trivia-active').style.display = 'none';
+        document.getElementById('trivia-final').classList.add('show');
+        document.getElementById('trivia-final-text').textContent = `Acertaste ${score} de ${questions.length}. ¡Nos vemos el 16.01.2027!`;
+      }
+    }, 1100);
+  }
+  renderQuestion();
+</script>
+
+</body>
+</html>

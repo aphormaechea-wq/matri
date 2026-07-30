@@ -49,6 +49,10 @@
     .strip{grid-template-columns:repeat(8, 1fr);}
   }
 
+  .quote-block{text-align:center; max-width:600px; margin:2.4rem auto 0; padding:0 1.5rem;}
+  .quote-block p{font-family:'Bodoni Moda', serif; font-style:italic; font-size:clamp(1.2rem, 3vw, 1.5rem); color:var(--ink-soft); line-height:1.5;}
+  .quote-block cite{display:block; margin-top:0.8rem; font-family:'Jost', sans-serif; font-style:normal; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-soft);}
+
   .countdown{text-align:center;}
   .countdown .eyebrow{display:block; margin-bottom:1.6rem;}
   .clocks{display:flex; justify-content:center; gap:clamp(1rem,4vw,2.8rem); flex-wrap:wrap;}
@@ -136,9 +140,13 @@
   <div class="strip" id="photo-strip"></div>
 </div>
 
+<div class="quote-block reveal">
+  <p>De tantos "sí, acepto" que hemos celebrado junto a ustedes, llega el turno del nuestro — y no lo imaginamos sin ustedes ahí.</p>
+</div>
+
 <hr class="hair reveal">
 
-<section class="countdown reveal">
+<section class="countdown reveal" style="padding-bottom:2rem;">
   <span class="eyebrow">Faltan</span>
   <div class="clocks">
     <div class="clock"><span class="num" id="cd-days">00</span><span class="lab">Días</span></div>
@@ -149,7 +157,7 @@
   <button class="cal-btn" id="cal-btn">Agenda en tu calendario</button>
 </section>
 
-<section id="hospedaje">
+<section id="hospedaje" style="padding-top:2rem;">
   <div class="section-head reveal">
     <span class="eyebrow">Para tu estadía</span>
     <h2 class="display">Hospedaje</h2>

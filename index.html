@@ -33,17 +33,11 @@
   .date-place{margin-top:1rem; letter-spacing:0.16em; text-transform:uppercase; font-family:'Jost', sans-serif; font-size:0.85rem; color:var(--ink-soft);}
 
   .strip-outer{width:100vw; position:relative; left:50%; margin-left:-50vw; margin-top:2.5rem;}
-  .strip{display:grid; grid-template-columns:repeat(2, 1fr); gap:4px; background:var(--white);}
+  .strip{display:grid; grid-template-columns:repeat(4, 1fr); gap:4px; background:var(--white);}
   .slot{position:relative; aspect-ratio:1/1; background:var(--paper); overflow:hidden;}
   .slot img{width:100%; height:100%; object-fit:cover; filter:grayscale(100%) contrast(1.05); display:block;}
-  @media (min-width:480px){
-    .strip{grid-template-columns:repeat(3, 1fr);}
-  }
   @media (min-width:768px){
-    .strip{grid-template-columns:repeat(5, 1fr);}
-  }
-  @media (min-width:1100px){
-    .strip{grid-template-columns:repeat(6, 1fr);}
+    .strip{grid-template-columns:repeat(8, 1fr);}
   }
 
   .countdown{text-align:center;}

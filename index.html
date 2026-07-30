@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ITA &amp; RICKY · Matrimonio</title>
+<title>Ita &amp; Ricky · Matrimonio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -73,6 +73,17 @@
   .trivia-final{display:none;}
   .trivia-final.show{display:block;}
 
+  .whatsapp-box{text-align:center; border:1px solid var(--line); padding:2.6rem 1.7rem;}
+  .whatsapp-box p{color:var(--ink-soft); font-size:0.98rem; max-width:480px; margin:0.6rem auto 1.6rem;}
+  .wa-btn{
+    display:inline-flex; align-items:center; gap:0.6rem;
+    border:1px solid var(--ink); background:var(--ink); color:var(--white);
+    font-family:'Jost', sans-serif; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase;
+    padding:0.85rem 1.6rem; text-decoration:none; transition:background .2s, color .2s;
+  }
+  .wa-btn:hover, .wa-btn:focus-visible{background:transparent; color:var(--ink);}
+  .wa-btn svg{width:18px; height:18px; fill:currentColor;}
+
   footer{text-align:center; padding:3.5rem 1.5rem 5rem;}
   footer .display{font-size:1.7rem; font-style:italic; color:var(--ink-soft);}
   footer p{margin-top:0.6rem; color:var(--ink-soft); font-family:'Jost',sans-serif; font-size:0.75rem; letter-spacing:0.1em;}
@@ -91,13 +102,11 @@
   <div class="date-place">16 · 01 · 2027 — Puerto Varas</div>
 </section>
 
+<!-- FOTOS: se cargan automáticamente desde la carpeta "fotos" del repo.
+     Para agregar, borrar o renombrar fotos, solo sube/edita archivos
+     dentro de esa carpeta en GitHub — no hace falta tocar este HTML. -->
 <div class="strip-outer">
-  <div class="strip">
-    <div class="slot"><img src="fotos/foto1.jpg" alt="Ita y Ricky"></div>
-    <div class="slot"><img src="fotos/foto2.jpg" alt="Ita y Ricky"></div>
-    <div class="slot"><img src="fotos/foto3.jpg" alt="Ita y Ricky"></div>
-    <div class="slot"><img src="fotos/foto4.jpg" alt="Ita y Ricky"></div>
-  </div>
+  <div class="strip" id="photo-strip"></div>
 </div>
 
 <hr class="hair reveal">
@@ -115,29 +124,24 @@
 <section id="hospedaje">
   <div class="section-head reveal">
     <span class="eyebrow">Para tu estadía</span>
-    <h2 class="display">Alojamientos</h2>
-    <p>Entendiendo que varios de ustedes no viven en Puerto Varas, les hemos conseguimos beneficios para que se sientan en casa.</p>
+    <h2 class="display">Hospedaje</h2>
+    <p>Los descuentos que conseguimos para quienes nos visiten en Puerto Varas.</p>
   </div>
   <div class="cards reveal">
     <div class="card">
       <h3>Hotel Wyndham Puerto Varas Pettra</h3>
-      <p> 20% sobre la tarifa publicada en https://wyndhampettra.com/wyndham-puerto-varas-pettra/ , reservar directo a través de la central de reservas mencionando el convenio del matrimonio GRUDWALD -PONCE para el mes de enero 2027. 
-
-        Correo para reservar:  reservas@wyndhampettra.com
-        Teléfono:  800 363 100
-      </p>
-      <div class="code-row">
-        <span class="code" id="code-hotel">ITARICKY10</span>
-        <button class="copy-btn" data-copy="code-hotel">Copiar código</button>
-      </div>
+      <p>20% sobre la tarifa publicada en <a href="https://wyndhampettra.com/wyndham-puerto-varas-pettra/" target="_blank" rel="noopener">wyndhampettra.com</a>. Reservar directo con la central mencionando el convenio del matrimonio <strong>Grunwald–Ponce</strong>, enero 2027.</p>
+      <p>Correo: <a href="mailto:reservas@wyndhampettra.com">reservas@wyndhampettra.com</a> · Tel: 800 363 100</p>
     </div>
     <div class="card">
-      <!-- EDITA AQUÍ: nombre, descripción y código de las cabañas -->
-      <h3>[Nombre de cabañas]</h3>
-      <p>[Breve descripción — capacidad, cercanía, etc.]</p>
+      <h3>Cabañas Quebrada Verde</h3>
+      <p>Descuento según cantidad de cabañas reservadas:<br>
+      1 cabaña –8% · 2 a 4 cabañas –10% · 5 a 6 cabañas –12%</p>
+      <p>No incluye alimentación ni aseo diario. Ver disponibilidad y detalle en <a href="https://www.quebradaverde.com" target="_blank" rel="noopener">quebradaverde.com</a></p>
+      <p>Contacto: +56 9 9230 8209 · <a href="mailto:contacto@quebradaverde.com">contacto@quebradaverde.com</a></p>
       <div class="code-row">
-        <span class="code" id="code-cabanas">CABANASIR</span>
-        <button class="copy-btn" data-copy="code-cabanas">Copiar código</button>
+        <!-- Apunta al Excel real que subiste al repo -->
+        <a class="copy-btn" href="Tarifas Quebrada Verde 2026 - 2027.xlsx" target="_blank" rel="noopener" style="text-decoration:none; display:inline-block;">Ver detalle de tarifas</a>
       </div>
     </div>
   </div>
@@ -150,13 +154,19 @@
     <span class="eyebrow">Cómo llegar</span>
     <h2 class="display">Transporte</h2>
   </div>
+  <!-- EDITA AQUÍ el texto de transporte cuando lo tengan listo -->
   <div class="soon reveal">
     <p>Estamos cerrando los datos de transporte hacia Puerto Varas. Apenas los tengamos, aparecerán aquí — vuelve a revisar esta página más adelante.</p>
   </div>
 </section>
 
-<hr class="hair reveal">
 <!--
+Regalos, Trivia y Novedades quedan ocultos por ahora (aún no definidos).
+Para reactivar cualquiera: quita las marcas de comentario que envuelven
+esa sección (la apertura antes de ella y el cierre después de ella).
+
+<hr class="hair reveal">
+
 <section id="regalos">
   <div class="section-head reveal">
     <span class="eyebrow">Si quieres tener un gesto con nosotros</span>
@@ -173,7 +183,6 @@
       </div>
     </div>
     <div class="card">
-     
       <h3>[Otra tienda / lista]</h3>
       <p>[Descripción breve]</p>
       <div class="code-row">
@@ -203,7 +212,24 @@
     </div>
   </div>
 </section>
+
+<hr class="hair reveal">
+
+<section id="novedades">
+  <div class="section-head reveal">
+    <span class="eyebrow">No te pierdas nada</span>
+    <h2 class="display">Novedades</h2>
+  </div>
+  <div class="whatsapp-box reveal">
+    <p>Únete a nuestro canal de WhatsApp para enterarte apenas subamos el parte, los horarios, el mapa y cualquier novedad.</p>
+    <a class="wa-btn" href="https://whatsapp.com/channel/REEMPLAZA-CON-TU-LINK" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2m0 1.8c2.15 0 4.17.84 5.69 2.36a7.99 7.99 0 0 1 2.35 5.7c0 4.47-3.64 8.1-8.1 8.1a8.1 8.1 0 0 1-4.11-1.12l-.29-.17-3.11.82.83-3.03-.19-.31a8.06 8.06 0 0 1-1.24-4.3c0-4.47 3.64-8.05 8.17-8.05m-3.5 4.19c-.15 0-.4.06-.6.28-.21.22-.8.78-.8 1.9 0 1.12.82 2.2.93 2.35.11.15 1.6 2.51 3.95 3.4 1.95.75 2.35.6 2.78.56.42-.04 1.36-.55 1.55-1.09.19-.53.19-.99.13-1.09-.06-.09-.21-.15-.45-.26-.23-.11-1.36-.67-1.57-.75-.21-.08-.36-.11-.51.11-.15.22-.58.75-.71.9-.13.15-.26.17-.49.06-.23-.11-.96-.36-1.83-1.14-.68-.6-1.13-1.34-1.27-1.57-.13-.22-.01-.34.1-.45.11-.11.23-.26.35-.39.11-.13.15-.22.23-.37.08-.15.04-.28-.02-.39-.06-.11-.51-1.25-.71-1.71-.19-.45-.38-.39-.51-.4-.13-.01-.28-.01-.43-.01z"/></svg>
+      Únete al canal de WhatsApp
+    </a>
+  </div>
+</section>
 -->
+
 <footer>
   <span class="display">Gracias por acompañarnos</span>
   <p>ITA &amp; RICKY · 16.01.2027 · PUERTO VARAS</p>
@@ -217,8 +243,34 @@
     { q:"[Ej: ¿Cuánto tiempo llevan juntos?]", opts:["[Opción A]","[Opción B]","[Opción C]"], correct:2 }
   ];
 
-  const target = new Date("2027-01-16T17:00:00-04:00").getTime();
+  // ---- Galería automática desde la carpeta /fotos del repo en GitHub ----
+  // Si cambias de repo o de usuario, actualiza estos dos valores:
+  const GH_USER = 'aphormaechea-wq';
+  const GH_REPO = 'matri';
+
+  fetch(`https://api.github.com/repos/${GH_USER}/${GH_REPO}/contents/fotos`)
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(files => {
+      const strip = document.getElementById('photo-strip');
+      if(!strip) return;
+      const images = files.filter(f => /\.(jpe?g|png|webp)$/i.test(f.name));
+      images.forEach(f => {
+        const slot = document.createElement('div');
+        slot.className = 'slot';
+        const img = document.createElement('img');
+        img.src = f.download_url;
+        img.alt = 'Ita y Ricky';
+        img.loading = 'lazy';
+        slot.appendChild(img);
+        strip.appendChild(slot);
+      });
+    })
+    .catch(() => {
+      // si falla la consulta (ej: sin conexión o límite de la API), se omite la galería sin romper el resto de la página
+    });
+
   function updateCountdown(){
+    const target = new Date("2027-01-16T17:00:00-04:00").getTime();
     const diff = Math.max(0, target - Date.now());
     document.getElementById('cd-days').textContent = String(Math.floor(diff/86400000)).padStart(2,'0');
     document.getElementById('cd-hours').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
@@ -252,6 +304,7 @@
   const fbEl = document.getElementById('trivia-feedback');
 
   function renderQuestion(){
+    if(!qEl) return; // la sección de trivia está oculta por ahora
     const item = questions[current];
     qEl.textContent = item.q;
     progEl.textContent = `Pregunta ${current+1} de ${questions.length}`;
@@ -289,7 +342,7 @@
       }
     }, 1100);
   }
-  renderQuestion();
+  if(qEl) renderQuestion();
 </script>
 
 </body>

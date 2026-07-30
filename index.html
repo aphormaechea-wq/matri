@@ -119,6 +119,15 @@
   footer .display{font-size:1.7rem; font-style:italic; color:var(--ink-soft);}
   footer p{margin-top:0.6rem; color:var(--ink-soft); font-family:'Jost',sans-serif; font-size:0.75rem; letter-spacing:0.1em;}
 
+  .music-btn{
+    position:fixed; bottom:20px; right:20px; z-index:50;
+    width:48px; height:48px; border-radius:50%; border:1px solid var(--ink);
+    background:var(--white); color:var(--ink); font-size:1.2rem; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 2px 10px rgba(0,0,0,0.12); transition:background .2s, color .2s;
+  }
+  .music-btn.playing{background:var(--ink); color:var(--white);}
+
   @media (min-width:640px){
     .cards{grid-template-columns:1fr 1fr;}
     .gift-grid{grid-template-columns:1fr 1fr;}
@@ -141,8 +150,10 @@
 </div>
 
 <div class="quote-block reveal">
-  <p>De tantos "sí, acepto" que hemos celebrado junto a ustedes, llega el turno del nuestro — y no lo imaginamos sin ustedes.</p>
+  <p>De tantos "sí, acepto" que hemos celebrado junto a ustedes, llega el turno del nuestro — y no lo imaginamos sin ustedes ahí.</p>
 </div>
+
+<hr class="hair reveal">
 
 <section class="countdown reveal" style="padding-bottom:2rem;">
   <span class="eyebrow">Faltan</span>
@@ -275,6 +286,13 @@ esa sección (la apertura antes de ella y el cierre después de ella).
   <span class="display">Gracias por acompañarnos</span>
   <p>ITA &amp; RICKY · 16.01.2027 · PUERTO VARAS</p>
 </footer>
+
+<!-- MÚSICA: sube tu archivo mp3 a una carpeta "audio" en el repo,
+     y cambia el nombre abajo si no se llama "cancion.mp3" -->
+<audio id="bg-music" loop preload="none">
+  <source src="audio/cancion.mp3" type="audio/mpeg">
+</audio>
+<button class="music-btn" id="music-btn" title="Reproducir música" aria-label="Reproducir música">🎵</button>
 
 <script>
   // ---- EDITA AQUÍ las preguntas de la trivia ----
@@ -460,6 +478,26 @@ esa sección (la apertura antes de ella y el cierre después de ella).
     }, 1100);
   }
   if(qEl) renderQuestion();
+
+  // ---- Música de fondo ----
+  const musicBtn = document.getElementById('music-btn');
+  const bgMusic = document.getElementById('bg-music');
+  if(musicBtn && bgMusic){
+    musicBtn.addEventListener('click', () => {
+      if(bgMusic.paused){
+        bgMusic.play().then(() => {
+          musicBtn.classList.add('playing');
+          musicBtn.textContent = '⏸';
+        }).catch(() => {
+          // si el navegador bloquea la reproducción, no rompe nada más
+        });
+      } else {
+        bgMusic.pause();
+        musicBtn.classList.remove('playing');
+        musicBtn.textContent = '🎵';
+      }
+    });
+  }
 </script>
 
 </body>

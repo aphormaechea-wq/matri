@@ -32,14 +32,15 @@
   .hero h1 em{font-style:italic; font-weight:400; color:var(--ink-soft);}
   .date-place{margin-top:1rem; letter-spacing:0.16em; text-transform:uppercase; font-family:'Jost', sans-serif; font-size:0.85rem; color:var(--ink-soft);}
 
-  .strip-outer{width:100vw; position:relative; left:50%; margin-left:-50vw; margin-top:2.5rem;}
+   .strip-outer{width:100vw; position:relative; left:50%; margin-left:-50vw; margin-top:2.5rem;}
   .strip{display:grid; grid-template-columns:repeat(4, 1fr); grid-auto-flow:dense; gap:4px; background:var(--white);}
   .slot{position:relative; aspect-ratio:1/1; background:var(--paper); overflow:hidden;}
   .slot img{width:100%; height:100%; object-fit:cover; filter:grayscale(100%) contrast(1.05); display:block;}
-  .slot.featured{grid-row:span 2; grid-column:span 2;}
+  .slot.featured{}
   @media (min-width:768px){
     .strip{grid-template-columns:repeat(8, 1fr);}
   }
+ 
 
   .countdown{text-align:center;}
   .countdown .eyebrow{display:block; margin-bottom:1.6rem;}
@@ -150,7 +151,7 @@
   <div class="cards reveal">
     <div class="card">
       <h3>Hotel Wyndham Puerto Varas Pettra</h3>
-      <p>20% sobre la tarifa publicada en su web. Reservar directo con la central mencionando el convenio del matrimonio <strong>Grunwald–Ponce</strong>, enero 2027.</p>
+      <p>20% sobre la tarifa publicada en su web. Reservar directo con la central a través de correo electrónico o teléfono, mencionando el convenio del matrimonio <strong>Grunwald–Ponce</strong>.</p>
       <div class="contact-row">
         <a class="contact-link" href="https://wyndhampettra.com/wyndham-puerto-varas-pettra/" target="_blank" rel="noopener">🔗 Ver sitio web</a>
         <a class="contact-link" href="mailto:reservas@wyndhampettra.com?subject=Reserva%20Matrimonio%20Grunwald%E2%80%93Ponce%20-%20Enero%202027&body=Hola%2C%20quisiera%20reservar%20alojamiento%20para%20el%20matrimonio%20de%20Ita%20y%20Ricky%20%28convenio%20Grunwald%E2%80%93Ponce%29%2C%20en%20enero%20de%202027.%20%C2%BFPodr%C3%ADan%20indicarme%20disponibilidad%20y%20tarifa%20con%20el%20descuento%20del%2020%25%3F%20Muchas%20gracias.">✉ Enviar correo</a>
@@ -168,7 +169,7 @@
         <a class="contact-link" href="https://www.quebradaverde.com" target="_blank" rel="noopener">🔗 Ver sitio web</a>
         <a class="contact-link" href="mailto:contacto@quebradaverde.com?subject=Reserva%20caba%C3%B1as%20-%20Matrimonio%20Ita%20%26%20Ricky&body=Hola%2C%20quisiera%20consultar%20disponibilidad%20y%20tarifas%20de%20caba%C3%B1as%20para%20el%20matrimonio%20de%20Ita%20y%20Ricky%20%2816.01.2027%29.%20Quedo%20atento%2Fa%2C%20muchas%20gracias.">✉ Enviar correo</a>
         <a class="contact-link" href="tel:+56992308209">☎ +56 9 9230 8209</a>
-        <!-- Apunta al Excel real que subiste al repo -->
+
         <a class="contact-link" href="Tarifas Quebrada Verde 2026 - 2027.xlsx" target="_blank" rel="noopener">📄 Ver tarifas</a>
       </div>
     </div>
@@ -184,7 +185,7 @@
   </div>
   <!-- EDITA AQUÍ el texto de transporte cuando lo tengan listo -->
   <div class="soon reveal">
-    <p>Estamos cerrando los datos de transporte hacia Puerto Varas. Apenas los tengamos, aparecerán aquí — vuelve a revisar esta página más adelante.</p>
+    <p>Estamos cerrando los datos de transporte para el gran día. Apenas los tengamos, aparecerán aquí — vuelve a revisar esta página más adelante.</p>
   </div>
 </section>
 

@@ -134,6 +134,42 @@
     .cards{grid-template-columns:1fr 1fr;}
     .gift-grid{grid-template-columns:1fr 1fr;}
   }
+
+  /* ---- Tips: pestañas + carrusel de tarjetas ---- */
+  .tips-tabs{display:flex; justify-content:center; gap:0.6rem; flex-wrap:wrap; margin-bottom:2.2rem;}
+  .tip-tab{
+    border:1px solid var(--ink); background:transparent; color:var(--ink);
+    font-family:'Jost', sans-serif; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;
+    padding:0.55rem 1.15rem; cursor:pointer; transition:background .2s, color .2s;
+  }
+  .tip-tab:hover, .tip-tab:focus-visible{background:var(--ink); color:var(--white);}
+  .tip-tab.active{background:var(--ink); color:var(--white);}
+
+  .tip-track{
+    display:none; gap:1.1rem; overflow-x:auto; scroll-snap-type:x mandatory;
+    padding:0.3rem 1.5rem 1.3rem; margin:0 -1.5rem;
+    -webkit-overflow-scrolling:touch; scrollbar-width:none;
+  }
+  .tip-track::-webkit-scrollbar{display:none;}
+  .tip-track.active{display:flex;}
+
+  .tip-card{
+    flex:0 0 78%; max-width:300px; scroll-snap-align:start;
+    border:1px solid var(--line); background:var(--white);
+    display:flex; flex-direction:column;
+  }
+  .tip-card .tip-img{width:100%; aspect-ratio:4/3; background:var(--paper); overflow:hidden;}
+  .tip-card .tip-img img{width:100%; height:100%; object-fit:cover; filter:grayscale(100%) contrast(1.05); display:block;}
+  .tip-card .tip-body{padding:1.3rem 1.4rem 1.5rem; flex:1; display:flex; flex-direction:column;}
+  .tip-card .tip-eyebrow{font-family:'Jost', sans-serif; font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold);}
+  .tip-card h3{font-family:'Bodoni Moda', serif; font-size:1.22rem; font-weight:500; margin-top:0.4rem;}
+  .tip-card p{color:var(--ink-soft); font-size:0.9rem; margin-top:0.4rem;}
+  .tip-card .contact-row{margin-top:auto; padding-top:1rem;}
+  .tip-hint{text-align:center; font-family:'Jost', sans-serif; font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-soft); margin-top:-1.2rem; margin-bottom:1.6rem;}
+
+  @media (min-width:640px){
+    .tip-card{flex:0 0 320px;}
+  }
 </style>
 </head>
 <body>
@@ -171,7 +207,7 @@
 <section id="hospedaje" style="padding-top:2rem; padding-bottom:2rem;">
   <div class="section-head reveal">
     <span class="eyebrow">Para tu estadía</span>
-    <h2 class="display">Alojamiento</h2>
+    <h2 class="display">Hospedaje</h2>
     <p>Los descuentos que conseguimos para quienes nos visiten en Puerto Varas.</p>
   </div>
   <div class="cards reveal">
@@ -203,14 +239,253 @@
 
 <hr class="hair reveal">
 
+<!--
+Transporte queda oculto por ahora (aún no está listo el texto).
+Para reactivarlo: quita las marcas de comentario que envuelven esta sección.
+
 <section id="transporte" style="padding-top:2rem;">
   <div class="section-head reveal">
     <span class="eyebrow">Cómo llegar</span>
     <h2 class="display">Transporte</h2>
   </div>
-  <!-- EDITA AQUÍ el texto de transporte cuando lo tengan listo -->
   <div class="soon reveal">
     <p>Estamos cerrando los datos de transporte hacia Puerto Varas. Apenas los tengamos, aparecerán aquí — vuelve a revisar esta página más adelante.</p>
+  </div>
+</section>
+
+<hr class="hair reveal">
+-->
+
+
+<!--
+  TIPS: para agregar, quitar o editar una tarjeta, copia/edita un bloque
+  <div class="tip-card">...</div> dentro del track de la categoría que
+  corresponda (track-actividades / track-comercio / track-gastronomia).
+  Cada tarjeta puede llevar una foto opcional en .tip-img — si no tienes
+  foto todavía, puedes borrar ese div y la tarjeta queda solo con texto.
+-->
+<section id="tips">
+  <div class="section-head reveal">
+    <span class="eyebrow">Para tu visita</span>
+    <h2 class="display">Tips en Puerto Varas</h2>
+    <p>Algunos lugares que recomendamos para aprovechar la estadía.</p>
+  </div>
+
+  <div class="tips-tabs reveal">
+    <button class="tip-tab active" data-cat="actividades">Actividades</button>
+    <button class="tip-tab" data-cat="comercio">Comercio</button>
+    <button class="tip-tab" data-cat="gastronomia">Gastronomía</button>
+  </div>
+  <p class="tip-hint reveal">Desliza para ver más →</p>
+
+  <div class="tip-track active reveal" id="track-actividades">
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/philippi.jpg" alt="Parque Philippi" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Parque</span>
+        <h3>Cerro Philippi</h3>
+        <p>[Breve descripción: mirador con vista al lago y volcán, senderos. Horario: xx:00–xx:00. Entrada: gratuita/valor.]</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://maps.app.goo.gl/3jqqeJefU7GsuY3R6" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/tren.jpg" alt="Paseo en tren" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Paseo en tren</span>
+        <h3>Estación Puerto Varas (EFE)</h3>
+        <p>[Días y horarios, ej: sáb y dom, 10:00 y 15:00 hrs. Valor aprox.]</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://maps.app.goo.gl/jUbrK3CSDFCgUU1G6" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/foto-spot.jpg" alt="Spot para fotos" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Foto favorita</span>
+        <h3>[Nombre del lugar/mirador]</h3>
+        <p>[Por qué recomendarlo, mejor hora del día para ir, ej: atardecer.]</p>
+        <div class="contact-row">
+          <a class="contact-link" href="[LINK GOOGLE MAPS]" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-track" id="track-comercio">
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/tienda-hombre.jpg" alt="Tienda de ropa" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Ropa hombre</span>
+        <h3>[Nombre de la tienda]</h3>
+        <p>[Breve descripción del lugar y qué encontrar ahí.]</p>
+        <div class="contact-row">
+          <a class="contact-link" href="[LINK GOOGLE MAPS]" target="_blank" rel="noopener">📍 Ubicación</a>
+          <a class="contact-link" href="[LINK INSTAGRAM O WEB]" target="_blank" rel="noopener">🔗 Ver más</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/feria-artesanal.jpg" alt="Feria Artesanal de Puerto Varas" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Recuerdos</span>
+        <h3>Feria Artesanal de Puerto Varas</h3>
+        <p>El lugar clásico para llevarse un recuerdo: tejidos, maderas talladas, joyería y artesanía local, junto a la plaza.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://www.google.com/maps/place/?q=place_id:ChIJG0G-a9cmGJYRrQKFZ-hhu2U" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-track" id="track-gastronomia">
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/mosto.jpg" alt="Mosto" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Para comer rico</span>
+        <h3>Mosto</h3>
+        <p>Cocina italiana con toque gourmet y una vista privilegiada al lago Llanquihue. Ideal para un pisco sour y unas papas bravas al atardecer.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://maps.app.goo.gl/FnBVp1GvCveTZRdWA" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/casa-valdes.jpg" alt="Casa Valdés" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Para comer rico</span>
+        <h3>Casa Valdés</h3>
+        <p>Especialistas en pescados y mariscos frescos, con una cocina de raíz vasca a orillas del lago.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://maps.app.goo.gl/4erh8N1RSLaPLkJ48" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/aurelia.jpg" alt="Aurelia" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Para comer rico</span>
+        <h3>Aurelia</h3>
+        <p>Parrilla y bistró franco-chileno con vista al lago, donde las carnes a la parrilla son el sello de la casa.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://maps.app.goo.gl/wZpUYTLmyXwRVbJ86" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/la-forja.jpg" alt="La Forja" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Para comer rico</span>
+        <h3>La Forja</h3>
+        <p>Parrilla de autor: fuego, producto genuino y detalles cuidados en cada plato. Ideal para una cena especial.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://maps.app.goo.gl/fDfRCGiuywDsQMzo6" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/puerta-roja.jpg" alt="La Puerta Roja" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Para comer rico</span>
+        <h3>La Puerta Roja</h3>
+        <p>Sabores españoles en pleno centro: paella y tapas con años de oficio detrás de cada plato.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://maps.app.goo.gl/xmYSYQYTvfhcqsKR9" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/da-alessandro.jpg" alt="Da Alessandro" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Para comer rico</span>
+        <h3>Da Alessandro</h3>
+        <p>Pizzas y pastas italianas caseras, siempre con buena onda y para toda la familia.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://maps.app.goo.gl/E2poi668b9APZKQk6" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/mesa-tropera.jpg" alt="Mesa Tropera" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Para comer rico</span>
+        <h3>Mesa Tropera</h3>
+        <p>Cervecería con cocina italiana y ambiente relajado: pizzas y pastas para compartir.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://maps.app.goo.gl/6R29WU6t44qMCQQb7" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/taberna-nose.jpg" alt="Taberna Nosé" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Para comer rico</span>
+        <h3>Taberna Nosé</h3>
+        <p>Taberna cervecera con desayunos, tapas y hamburguesas, buena cerveza artesanal y ambiente animado.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://maps.app.goo.gl/Rs8gFeZJFSs2KmEV7" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/la-olla.jpg" alt="La Olla" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Para comer rico</span>
+        <h3>La Olla</h3>
+        <p>Referente de pescados y mariscos del sur de Chile: la "picada caliente" es la especialidad de la casa.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://maps.app.goo.gl/7JnrFnnQ6vcZCCuw6" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/zaatar.jpg" alt="Zaatar" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Delivery</span>
+        <h3>Zaatar Cocina de Oriente</h3>
+        <p>Cocina callejera de Medio Oriente y Asia con toque gourmet: shawarma, falafel y curry imperdibles.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://maps.app.goo.gl/brF5pBDGi5AjdkB19" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/demexico.jpg" alt="DEMÉXICO" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Delivery</span>
+        <h3>DEMÉXICO</h3>
+        <p>Comida mexicana casera hecha con recetas tradicionales: burritos, tacos y chilaquiles, con opciones veggie.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://maps.app.goo.gl/iws16gXh6sBPnjes5" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/rolling-wok.jpg" alt="Rolling & Wok" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Delivery</span>
+        <h3>Rolling &amp; Wok</h3>
+        <p>Sushi y wok fresco de barrio, ideal para pedir delivery una noche tranquila.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://maps.app.goo.gl/iRd6rEigdcuTxUA66" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <!-- EDITA AQUÍ: agrega el café de Llanquihue cuando tengas el nombre/link -->
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/cafe-llanquihue.jpg" alt="Café en Llanquihue" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Café en Llanquihue</span>
+        <h3>[Nombre del café]</h3>
+        <p>[Por qué recomendarlo, qué pedir ahí.]</p>
+        <div class="contact-row">
+          <a class="contact-link" href="[LINK GOOGLE MAPS]" target="_blank" rel="noopener">📍 Ubicación</a>
+          <a class="contact-link" href="[LINK INSTAGRAM O WEB]" target="_blank" rel="noopener">🔗 Ver más</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -372,6 +647,17 @@ esa sección (la apertura antes de ella y el cierre después de ella).
       // si falla la consulta (ej: sin conexión o límite de la API), se omite la galería sin romper el resto de la página
     });
 
+
+  // ---- Tips: cambiar de categoría con las pestañas ----
+  document.querySelectorAll('.tip-tab').forEach(tab=>{
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tip-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('.tip-track').forEach(tr => tr.classList.remove('active'));
+      const track = document.getElementById('track-' + tab.dataset.cat);
+      if(track) track.classList.add('active');
+    });
+  });
 
   // ---- Agendar en el calendario del teléfono (archivo .ics universal) ----
   const calBtn = document.getElementById('cal-btn');

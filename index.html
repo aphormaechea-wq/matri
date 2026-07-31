@@ -68,8 +68,8 @@
   .cal-btn:hover, .cal-btn:focus-visible{background:var(--ink); color:var(--white);}
 
   .section-head{text-align:center; margin-bottom:2.4rem;}
-  .section-head h2{font-size:clamp(2rem, 5.5vw, 2.7rem); font-weight:500; letter-spacing:0.01em; margin-top:0.5rem;}
-  .section-head p{color:var(--ink-soft); margin-top:0.7rem;}
+  .section-head h2{font-size:clamp(2rem, 5.5vw, 2.7rem); font-weight:500; letter-spacing:0.01em; line-height:1.05; margin-top:0.4rem;}
+  .section-head p{color:var(--ink-soft); line-height:1.4; margin-top:0.6rem;}
 
   .cards{display:grid; gap:1.3rem;}
   .card{border:1px solid var(--line); padding:1.9rem 1.7rem; background:var(--white);}
@@ -146,12 +146,25 @@
   .tip-tab.active{background:var(--ink); color:var(--white);}
 
   .tip-track{
-    display:none; gap:1.1rem; overflow-x:auto; scroll-snap-type:x mandatory;
+    display:none; align-items:flex-start; gap:1.1rem; overflow-x:auto; scroll-snap-type:x mandatory;
     padding:0.3rem 1.5rem 1.3rem; margin:0 -1.5rem;
-    -webkit-overflow-scrolling:touch; scrollbar-width:none;
+    -webkit-overflow-scrolling:touch; scrollbar-width:none; cursor:grab;
   }
+  .tip-track.dragging{cursor:grabbing; scroll-snap-type:none; user-select:none;}
   .tip-track::-webkit-scrollbar{display:none;}
   .tip-track.active{display:flex;}
+  .tip-track.tip-track-grid.active{
+    display:grid; grid-auto-flow:column; grid-template-rows:repeat(2, auto);
+    grid-auto-columns:270px; align-items:start;
+  }
+
+  .tip-nav{display:flex; justify-content:center; gap:0.7rem; margin-top:0.4rem; margin-bottom:1rem;}
+  .tip-arrow{
+    width:38px; height:38px; border:1px solid var(--ink); background:transparent; color:var(--ink);
+    font-family:'Jost', sans-serif; font-size:1rem; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:background .2s, color .2s;
+  }
+  .tip-arrow:hover, .tip-arrow:focus-visible{background:var(--ink); color:var(--white);}
 
   .tip-card{
     flex:0 0 78%; max-width:300px; scroll-snap-align:start;
@@ -278,13 +291,13 @@ Para reactivarlo: quita las marcas de comentario que envuelven esta sección.
   </div>
   <p class="tip-hint reveal">Desliza para ver más →</p>
 
-  <div class="tip-track active reveal" id="track-actividades">
+  <div class="tip-track tip-track-grid active reveal" id="track-actividades">
     <div class="tip-card">
       <div class="tip-img"><img src="fotos-tips/philippi.jpg" alt="Parque Philippi" loading="lazy" onerror="this.parentElement.remove()"></div>
       <div class="tip-body">
-        <span class="tip-eyebrow">Parque</span>
+        <span class="tip-eyebrow">Parque · Visita rápida</span>
         <h3>Cerro Philippi</h3>
-        <p>[Breve descripción: mirador con vista al lago y volcán, senderos. Horario: xx:00–xx:00. Entrada: gratuita/valor.]</p>
+        <p>Mirador con vista al lago y volcán, senderos. Horario: 7:00 a 22:00 hrs.</p>
         <div class="contact-row">
           <a class="contact-link" href="https://maps.app.goo.gl/3jqqeJefU7GsuY3R6" target="_blank" rel="noopener">📍 Ubicación</a>
         </div>
@@ -298,13 +311,14 @@ Para reactivarlo: quita las marcas de comentario que envuelven esta sección.
         <p>[Días y horarios, ej: sáb y dom, 10:00 y 15:00 hrs. Valor aprox.]</p>
         <div class="contact-row">
           <a class="contact-link" href="https://maps.app.goo.gl/jUbrK3CSDFCgUU1G6" target="_blank" rel="noopener">📍 Ubicación</a>
+          <a class="contact-link" href="https://www.efe.cl/nuestros-servicios/llanquihue-puerto-montt/estaciones/puerto-varas/" target="_blank" rel="noopener">🔗 Horarios y valores</a>
         </div>
       </div>
     </div>
     <div class="tip-card">
       <div class="tip-img"><img src="fotos-tips/foto-spot.jpg" alt="Spot para fotos" loading="lazy" onerror="this.parentElement.remove()"></div>
       <div class="tip-body">
-        <span class="tip-eyebrow">Foto favorita</span>
+        <span class="tip-eyebrow">Foto favorita · Visita rápida</span>
         <h3>[Nombre del lugar/mirador]</h3>
         <p>[Por qué recomendarlo, mejor hora del día para ir, ej: atardecer.]</p>
         <div class="contact-row">
@@ -312,9 +326,98 @@ Para reactivarlo: quita las marcas de comentario que envuelven esta sección.
         </div>
       </div>
     </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/petrohue.jpg" alt="Saltos de Petrohué" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Naturaleza · Medio día</span>
+        <h3>Saltos de Petrohué</h3>
+        <p>Cascadas de un turquesa intenso sobre lava del volcán Osorno, dentro del Parque Nacional Vicente Pérez Rosales, a ~55 km de Puerto Varas. Abierto todos los días de 9:00 a 17:00/17:30 hrs, entrada desde $3.700.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://www.google.com/maps/place/?q=place_id:ChIJA7e1akBiF5YRGX2D8me8Pnw" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/volcan-osorno.jpg" alt="Volcán Osorno" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Naturaleza · Medio día</span>
+        <h3>Volcán Osorno</h3>
+        <p>El ícono de Puerto Varas: senderos, miradores y telesilla que sube hasta cerca de 1.670 m, con vista al lago Llanquihue y los volcanes vecinos. Centro de Montaña abierto todos los días, aprox. 9:30–17:00 hrs.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://www.google.com/maps/place/?q=place_id:ChIJW8fP01d7F5YR4LDpb5pt3QQ" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/museo-pablo-fierro.jpg" alt="Museo Pablo Fierro" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Museo · Visita rápida</span>
+        <h3>Museo Pablo Fierro</h3>
+        <p>Casa-museo en la costanera, creada por el propio artista: objetos de otra época que se pueden mirar y también tocar. Entrada liberada (a voluntad). Cerrado los sábados.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://www.google.com/maps/place/?q=place_id:ChIJf2KfptwmGJYR2mJa3L_p-Vo" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/museo-aleman.jpg" alt="Museo Antonio Felmer" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Museo · Medio día (con traslado)</span>
+        <h3>Museo Antonio Felmer</h3>
+        <p>La mayor colección de antigüedades de la colonización alemana en el sur de Chile, en Nueva Braunau (9 km de Puerto Varas). Abierto martes a domingo, horario según temporada — conviene revisar museoaleman.cl antes de ir.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://www.google.com/maps/place/?q=place_id:ChIJqxU6ToEfGJYRMVuTQ2lVF8k" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/la-cascada.jpg" alt="La Cascada, Las Cascadas" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Naturaleza · Medio día</span>
+        <h3>La Cascada (Las Cascadas)</h3>
+        <p>Salto de agua de 50 m del Río Blanco, a orillas del lago Llanquihue, camino a Ensenada. Se llega con una caminata de 30–40 min por bosque; entrada liberada / aporte voluntario.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://www.google.com/maps/place/?q=place_id:ChIJV5_vyRN6F5YReoOcwZYeA_o" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/pilates.jpg" alt="Anturia Pilates" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Pilates · Clase diaria</span>
+        <h3>Anturia Pilates</h3>
+        <p>Clases de Pilates (suelo y máquinas) y HIIT en el centro de Puerto Varas. Tendremos precio preferencial para nuestros invitados — por confirmar.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://www.google.com/maps/place/?q=place_id:ChIJKefOZBYnGJYRVLqz5WI_FQg" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/pesca.jpg" alt="Navega Puerto Varas" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Pesca · Medio día</span>
+        <h3>Navega Puerto Varas</h3>
+        <p>Salidas de pesca en el lago Llanquihue con guía, ideal para desconectar unas horas. Muy bien evaluados por los que ya han salido con ellos.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://www.google.com/maps/place/?q=place_id:ChIJsWQwkSmaYmIRGENkqMHLui4" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/rafting.jpg" alt="Rafting Río Petrohué" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Rafting · Medio día</span>
+        <h3>Rafting Río Petrohué</h3>
+        <p>Rafting de medio día en el Río Petrohué con Al Sur Expediciones, aguas turquesa y paisaje de bosque nativo. Apto para principiantes.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://www.google.com/maps/place/?q=place_id:ChIJ4-YwrNsmGJYRNIczGT4QXzk" target="_blank" rel="noopener">📍 Ubicación</a>
+          <a class="contact-link" href="https://alsurexpediciones.cl/los-lagos-patagonia/rafting-medio-dia/" target="_blank" rel="noopener">🔗 Más info</a>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="tip-track" id="track-comercio">
+  <div class="tip-track tip-track-grid" id="track-comercio">
     <div class="tip-card">
       <div class="tip-img"><img src="fotos-tips/tienda-hombre.jpg" alt="Tienda de ropa" loading="lazy" onerror="this.parentElement.remove()"></div>
       <div class="tip-body">
@@ -338,9 +441,45 @@ Para reactivarlo: quita las marcas de comentario que envuelven esta sección.
         </div>
       </div>
     </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/nuts.jpg" alt="Nuts Artesanías" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Recuerdos</span>
+        <h3>Nuts</h3>
+        <p>Artesanía en madera de especies nativas chilenas: bandejas, platones y objetos únicos, con atención cercana y dedicada.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://www.google.com/maps/place/?q=place_id:ChIJw57vddcmGJYRljQsF1iqh94" target="_blank" rel="noopener">📍 Ubicación</a>
+          <a class="contact-link" href="https://www.instagram.com/nut_chile/" target="_blank" rel="noopener">🔗 Instagram</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/garuga.jpg" alt="Garuga" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Recuerdos</span>
+        <h3>Garuga</h3>
+        <p>Ropa, papelería y accesorios diseñados e ilustrados en Puerto Varas, con estampados propios inspirados en la flora y fauna del sur.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://www.google.com/maps/place/?q=place_id:ChIJTwEsqjonGJYRUXgBuzUYufo" target="_blank" rel="noopener">📍 Ubicación</a>
+          <a class="contact-link" href="https://www.garuga.cl/" target="_blank" rel="noopener">🔗 Sitio web</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/mundo-rural.jpg" alt="Mundo Rural" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Recuerdos</span>
+        <h3>Mundo Rural</h3>
+        <p>Sabores del campo chileno: mermeladas, quesos, mieles y más de pequeños productores de la región. Comparte espacio con la Fundación Artesanías de Chile, frente a la Plaza de Armas.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://maps.app.goo.gl/HCdRewFNwioyjNK86" target="_blank" rel="noopener">📍 Ubicación</a>
+          <a class="contact-link" href="https://www.mundoruralpv.cl/" target="_blank" rel="noopener">🔗 Sitio web</a>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="tip-track" id="track-gastronomia">
+  <div class="tip-track tip-track-grid" id="track-gastronomia">
     <div class="tip-card">
       <div class="tip-img"><img src="fotos-tips/mosto.jpg" alt="Mosto" loading="lazy" onerror="this.parentElement.remove()"></div>
       <div class="tip-body">
@@ -404,6 +543,17 @@ Para reactivarlo: quita las marcas de comentario que envuelven esta sección.
         <p>Pizzas y pastas italianas caseras, siempre con buena onda y para toda la familia.</p>
         <div class="contact-row">
           <a class="contact-link" href="https://maps.app.goo.gl/E2poi668b9APZKQk6" target="_blank" rel="noopener">📍 Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-img"><img src="fotos-tips/de-barrio.jpg" alt="De Barrio Bistró" loading="lazy" onerror="this.parentElement.remove()"></div>
+      <div class="tip-body">
+        <span class="tip-eyebrow">Para comer rico</span>
+        <h3>De Barrio Bistró y Pastelería</h3>
+        <p>Bistró y pastelería en una antigua casa patrimonial de calle Baquedano: cocina variada —carnes, pescados y mariscos— con opciones para toda la familia y una repostería que enamora.</p>
+        <div class="contact-row">
+          <a class="contact-link" href="https://maps.app.goo.gl/NkxwBdeyEPhtN4TU7" target="_blank" rel="noopener">📍 Ubicación</a>
         </div>
       </div>
     </div>
@@ -486,6 +636,11 @@ Para reactivarlo: quita las marcas de comentario que envuelven esta sección.
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="tip-nav reveal">
+    <button class="tip-arrow" id="tip-prev" aria-label="Ver anterior">←</button>
+    <button class="tip-arrow" id="tip-next" aria-label="Ver siguiente">→</button>
   </div>
 </section>
 
@@ -657,6 +812,44 @@ esa sección (la apertura antes de ella y el cierre después de ella).
       const track = document.getElementById('track-' + tab.dataset.cat);
       if(track) track.classList.add('active');
     });
+  });
+
+  // ---- Tips: flechas de navegación (mueven el carrusel activo) ----
+  function activeTipTrack(){ return document.querySelector('.tip-track.active'); }
+  const tipPrev = document.getElementById('tip-prev');
+  const tipNext = document.getElementById('tip-next');
+  if(tipPrev) tipPrev.addEventListener('click', () => {
+    const t = activeTipTrack();
+    if(t) t.scrollBy({left: -320, behavior: 'smooth'});
+  });
+  if(tipNext) tipNext.addEventListener('click', () => {
+    const t = activeTipTrack();
+    if(t) t.scrollBy({left: 320, behavior: 'smooth'});
+  });
+
+  // ---- Tips: arrastrar con el mouse (clic y arrastrar) en desktop ----
+  document.querySelectorAll('.tip-track').forEach(track => {
+    let isDown = false, startX = 0, startScroll = 0;
+    track.addEventListener('mousedown', e => {
+      isDown = true;
+      track.classList.add('dragging');
+      startX = e.pageX;
+      startScroll = track.scrollLeft;
+    });
+    window.addEventListener('mouseup', () => { isDown = false; track.classList.remove('dragging'); });
+    track.addEventListener('mouseleave', () => { isDown = false; track.classList.remove('dragging'); });
+    track.addEventListener('mousemove', e => {
+      if(!isDown) return;
+      e.preventDefault();
+      track.scrollLeft = startScroll - (e.pageX - startX);
+    });
+    // Convierte el scroll vertical del mouse en scroll horizontal dentro del carrusel
+    track.addEventListener('wheel', e => {
+      if(track.scrollWidth > track.clientWidth){
+        e.preventDefault();
+        track.scrollLeft += e.deltaY;
+      }
+    }, {passive:false});
   });
 
   // ---- Agendar en el calendario del teléfono (archivo .ics universal) ----

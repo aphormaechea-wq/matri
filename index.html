@@ -853,7 +853,7 @@ esa sección (la apertura antes de ella y el cierre después de ella).
         'DTEND;VALUE=DATE:20270117',
         'SUMMARY:Matri Ita & Ricky',
         'LOCATION:Puerto Varas\\, Chile',
-        'DESCRIPTION:¡Nos casamos! Agenda y prepárate tanto como nosotros para este gran día. ¡Nos encanta la idea de que nos puedas acompañar!',
+        'DESCRIPTION:¡Nos casamos! Agenda y prepárate tanto como nosotros para este gran día tan especial. ¡Nos encanta la idea de que nos puedas acompañar!',
         'END:VEVENT',
         'END:VCALENDAR'
       ].join('\r\n');
@@ -967,12 +967,16 @@ esa sección (la apertura antes de ella y el cierre después de ella).
       musicIcon.innerHTML = ICON_ON;
       window.removeEventListener('click', unmuteOnFirstInteraction);
       window.removeEventListener('touchstart', unmuteOnFirstInteraction);
+      window.removeEventListener('touchend', unmuteOnFirstInteraction);
+      window.removeEventListener('pointerdown', unmuteOnFirstInteraction);
       window.removeEventListener('scroll', unmuteOnFirstInteraction);
       window.removeEventListener('keydown', unmuteOnFirstInteraction);
     }
     window.addEventListener('click', unmuteOnFirstInteraction, {once:true});
-    window.addEventListener('touchstart', unmuteOnFirstInteraction, {once:true});
-    window.addEventListener('scroll', unmuteOnFirstInteraction, {once:true});
+    window.addEventListener('touchstart', unmuteOnFirstInteraction, {once:true, passive:true});
+    window.addEventListener('touchend', unmuteOnFirstInteraction, {once:true, passive:true});
+    window.addEventListener('pointerdown', unmuteOnFirstInteraction, {once:true});
+    window.addEventListener('scroll', unmuteOnFirstInteraction, {once:true, passive:true});
     window.addEventListener('keydown', unmuteOnFirstInteraction, {once:true});
 
     // El botón sigue sirviendo para pausar o silenciar manualmente

@@ -220,8 +220,8 @@
 <section id="hospedaje" style="padding-top:2rem; padding-bottom:2rem;">
   <div class="section-head reveal">
     <span class="eyebrow">Para tu estadía</span>
-    <h2 class="display">Alojamiento</h2>
-    <p>Los descuentos que conseguimos para quienes nos visiten en Puerto Varas. Como la celebración será durante el día, te recomendamos reservar al menos desde el viernes 15 hasta el domingo 17 de enero.</p>
+    <h2 class="display">Hospedaje</h2>
+    <p>Los descuentos que conseguimos para quienes nos visiten en Puerto Varas. Como la celebración será durante el día, te recomendamos reservar al menos desde el viernes 15 hasta el domingo 17 de enero. Enero es temporada alta en el sur de Chile, así que te recomendamos reservar vuelos y alojamiento con la mayor anticipación posible.</p>
   </div>
   <div class="cards reveal">
     <div class="card">
@@ -247,9 +247,6 @@
         <a class="contact-link" href="Tarifas Quebrada Verde 2026 - 2027.xlsx" target="_blank" rel="noopener">📄 Ver tarifas</a>
       </div>
     </div>
-  </div>
-  <div class="section-head reveal">
-    <p>Enero es temporada alta en el sur, así que te recomendamos reservar vuelos y alojamiento con la mayor anticipación posible.</p>
   </div>
 </section>
 
@@ -707,8 +704,8 @@ esa sección (la apertura antes de ella y el cierre después de ella).
 </footer>
 
 <!-- MÚSICA: apunta al archivo real que subiste a la carpeta audio -->
-<audio id="bg-music" loop preload="auto">
-  <source src="audio/Mazzy%20Star%20-%20Fade%20Into%20You%20-%201021994%20-%20Shoreline%20Amphitheatre.mp3" type="audio/mpeg">
+<audio id="bg-music" loop preload="auto" playsinline>
+  <source src="audio/musica.mp3" type="audio/mpeg">
 </audio>
 <button class="music-btn" id="music-btn" title="Pausar / silenciar música" aria-label="Pausar o silenciar música">
   <svg id="music-icon" viewBox="0 0 24 24"><polygon points="4,9 8,9 12,5 12,19 8,15 4,15" fill="currentColor" stroke="none"/><path d="M16 9l5 6"/><path d="M21 9l-5 6"/></svg>
@@ -856,7 +853,7 @@ esa sección (la apertura antes de ella y el cierre después de ella).
         'DTEND;VALUE=DATE:20270117',
         'SUMMARY:Matri Ita & Ricky',
         'LOCATION:Puerto Varas\\, Chile',
-        'DESCRIPTION:¡Nos casamos! Agenda y prepárate tanto como nosotros para este gran día. ¡Nos encanta la idea de que nos puedas acompañar!',
+        'DESCRIPTION:¡Nos casamos! Agenda y prepárate tanto como nosotros para este gran día tan especial. ¡Nos encanta la idea de que nos puedas acompañar!',
         'END:VEVENT',
         'END:VCALENDAR'
       ].join('\r\n');
@@ -960,6 +957,9 @@ esa sección (la apertura antes de ella y el cierre después de ella).
   const ICON_OFF = '<polygon points="4,9 8,9 12,5 12,19 8,15 4,15" fill="currentColor" stroke="none"/><path d="M16 9l5 6"/><path d="M21 9l-5 6"/>';
 
   if(musicBtn && bgMusic && musicIcon){
+    bgMusic.addEventListener('error', () => {
+      console.error('No se pudo cargar el archivo de audio. Revisa que exista "audio/musica.mp3" en el repo, con ese nombre exacto.');
+    });
     bgMusic.muted = true;
     bgMusic.volume = 1;
     bgMusic.play().catch(() => {});

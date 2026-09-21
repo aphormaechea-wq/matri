@@ -90,6 +90,10 @@
   .map-embed{margin-top:1rem; border:1px solid var(--line); overflow:hidden; aspect-ratio:4/3; background:var(--paper);}
   .map-embed img{width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(20%) contrast(1.03);}
 
+  .route-illustration{text-align:center; max-width:900px; margin:2.6rem auto 0; padding:0 1rem;}
+  .route-illustration img{width:100%; height:auto; display:block; filter:contrast(1.05);}
+  .route-distance{margin-top:0.8rem; color:var(--ink-soft); font-size:0.88rem;}
+
   .rsvp-form{max-width:560px; margin:0 auto;}
   .rsvp-field{margin-bottom:1.6rem;}
   .rsvp-field label{
@@ -325,14 +329,19 @@
   <div class="section-head reveal">
     <span class="eyebrow">Dónde encontrarnos</span>
     <h2 class="display">Ubicación</h2>
-    <p>La ceremonia y recepción serán en dos lugares distintos — aquí tienes el mapa y el link directo a Waze para cada uno.</p>
+    <p>La ceremonia y recepción serán en dos lugares distintos — aquí tienes el link directo a Waze y Maps para cada uno.</p>
   </div>
+
+  <div class="cards reveal">
+    <div class="card" style="text-align:center;">
       <h3>Parroquia Sagrado Corazón de Jesús</h3>
       <p>Verbo Divino 499, Puerto Varas — la ceremonia religiosa.</p>
       <div class="contact-row">
         <a class="contact-link" href="https://waze.com/ul?ll=-41.320718,-72.986162&navigate=yes" target="_blank" rel="noopener">🚗 Abrir en Waze</a>
         <a class="contact-link" href="https://www.google.com/maps/search/?api=1&query=-41.320718,-72.986162" target="_blank" rel="noopener">📍 Ver en Maps</a>
       </div>
+    </div>
+    <div class="card" style="text-align:center;">
       <h3>La Fragua</h3>
       <p>Ruta U-95 Km 4, sector Coñico, Purranque — la recepción.</p>
       <div class="contact-row">
@@ -340,7 +349,15 @@
         <a class="contact-link" href="https://www.google.com/maps/search/?api=1&query=-40.94475377872807,-73.0908355519993" target="_blank" rel="noopener">📍 Ver en Maps</a>
       </div>
     </div>
-  <p style="text-align:center; margin-top:1.6rem; color:var(--ink-soft); font-size:0.88rem;">Entre ambos lugares hay aproximadamente <strong>55 km</strong>, unos <strong>40–45 minutos</strong> en auto.</p>
+  </div>
+
+  <!-- Ilustración decorativa del trayecto (no es un mapa real ni a escala) -->
+  <div class="route-illustration reveal">
+    <!-- EDITA AQUÍ: sube camino.png a una carpeta "ilustraciones" en tu repo
+         (mismo proceso que hiciste con las fotos) -->
+    <img src="ilustraciones/camino.png" alt="Ilustración del trayecto entre la Parroquia y La Fragua" loading="lazy">
+    <p class="route-distance">Entre ambos lugares hay aproximadamente <strong>55 km</strong>, unos <strong>40–45 minutos</strong> en auto.</p>
+  </div>
 </section>
 
 <hr class="hair reveal">

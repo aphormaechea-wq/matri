@@ -88,7 +88,7 @@
   .gift-card.gifted .gifted-badge{display:inline-block;}
   .gift-card.gifted .gift-mark-btn{display:none;}
   .map-embed{margin-top:1rem; border:1px solid var(--line); overflow:hidden; aspect-ratio:4/3; background:var(--paper);}
-  .map-embed iframe{width:100%; height:100%; border:0; filter:grayscale(35%) contrast(1.05);}
+  .map-embed img{width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(20%) contrast(1.03);}
 
   .rsvp-form{max-width:560px; margin:0 auto;}
   .rsvp-field{margin-bottom:1.6rem;}
@@ -151,15 +151,20 @@
   .modal-close:hover, .modal-close:focus-visible{color:var(--ink);}
   body.modal-open{overflow:hidden;}
   .code-row{margin-top:1rem; display:flex; align-items:center; gap:0.8rem; flex-wrap:wrap;}
-  .contact-row{margin-top:1.1rem; display:flex; gap:0.6rem; flex-wrap:wrap;}
+  .contact-row{margin-top:1.1rem; display:flex; justify-content:center; gap:0.5rem; flex-wrap:wrap;}
   .contact-link{
-    display:inline-flex; align-items:center; gap:0.4rem;
+    display:inline-flex; align-items:center; gap:0.35rem; white-space:nowrap;
     border:1px solid var(--ink); background:transparent; color:var(--ink);
     font-family:'Jost', sans-serif; font-size:0.72rem; letter-spacing:0.03em; text-transform:uppercase;
     padding:0.5rem 0.9rem; text-decoration:none;
     transition:background .2s, color .2s;
   }
   .contact-link:hover, .contact-link:focus-visible, .contact-link:active{background:var(--ink); color:var(--white);}
+  button.contact-link{cursor:pointer;}
+  @media (max-width:400px){
+    .contact-row{gap:0.35rem;}
+    .contact-link{font-size:0.6rem; letter-spacing:0.01em; padding:0.42rem 0.55rem; gap:0.25rem;}
+  }
   .code{font-family:'Jost', sans-serif; letter-spacing:0.12em; border:1px dashed var(--gold); color:var(--ink); padding:0.35rem 0.8rem; font-size:0.85rem; background:rgba(166,135,60,0.06);}
   .copy-btn{border:1px solid var(--ink); background:transparent; color:var(--ink); font-family:'Jost', sans-serif; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; padding:0.45rem 0.9rem; cursor:pointer; transition:background .2s, color .2s;}
   .copy-btn:hover, .copy-btn:focus-visible{background:var(--ink); color:var(--white);}
@@ -217,6 +222,7 @@
     color:var(--ink-soft); text-decoration:none; flex:0 0 auto; transition:color .2s;
   }
   .quicknav a:hover, .quicknav a:focus-visible{color:var(--ink);}
+  .quicknav a.active{background:var(--ink-soft); color:var(--white); padding:0.3rem 0.6rem; border-radius:2px;}
   html{scroll-padding-top:56px;}
 
   @media (min-width:640px){
@@ -326,7 +332,8 @@
       <h3>Parroquia Sagrado Corazón de Jesús</h3>
       <p>Verbo Divino 499, Puerto Varas — la ceremonia religiosa.</p>
       <div class="map-embed">
-        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-73.001162%2C-41.330718%2C-72.971162%2C-41.310718&layer=mapnik&marker=-41.320718%2C-72.986162" loading="lazy" title="Mapa Parroquia Sagrado Corazón de Jesús"></iframe>
+        <!-- Mapa vía Mapbox, con tu token real ya cargado -->
+        <img src="https://api.mapbox.com/styles/v1/mapbox/light-v11/static/pin-s+1a1a18(-72.986162,-41.320718)/-72.986162,-41.320718,14,0/600x450@2x?access_token=pk.eyJ1IjoiZmFtZ3J1bndhbGRwb25jZSIsImEiOiJjbXViZHVvdzYxanpnMzlzbHp0Z2V3NG4yIn0.bjPBrMtZLdjVmQQCRpibtw" loading="lazy" alt="Mapa Parroquia Sagrado Corazón de Jesús">
       </div>
       <div class="contact-row">
         <a class="contact-link" href="https://waze.com/ul?ll=-41.320718,-72.986162&navigate=yes" target="_blank" rel="noopener">🚗 Abrir en Waze</a>
@@ -337,7 +344,7 @@
       <h3>La Fragua</h3>
       <p>Ruta U-95 Km 4, sector Coñico, Purranque — la celebración.</p>
       <div class="map-embed">
-        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-73.1058355519993%2C-40.95975377872807%2C-73.0758355519993%2C-40.92975377872807&layer=mapnik&marker=-40.94475377872807%2C-73.0908355519993" loading="lazy" title="Mapa La Fragua, Purranque"></iframe>
+        <img src="https://api.mapbox.com/styles/v1/mapbox/light-v11/static/pin-s+1a1a18(-73.0908355519993,-40.94475377872807)/-73.0908355519993,-40.94475377872807,13,0/600x450@2x?access_token=pk.eyJ1IjoiZmFtZ3J1bndhbGRwb25jZSIsImEiOiJjbXViZHVvdzYxanpnMzlzbHp0Z2V3NG4yIn0.bjPBrMtZLdjVmQQCRpibtw" loading="lazy" alt="Mapa La Fragua, Purranque">
       </div>
       <div class="contact-row">
         <a class="contact-link" href="https://waze.com/ul?ll=-40.94475377872807,-73.0908355519993&navigate=yes" target="_blank" rel="noopener">🚗 Abrir en Waze</a>
@@ -771,14 +778,12 @@ Para reactivarlo: quita las marcas de comentario que envuelven esta sección.
         <a class="contact-link" href="https://www.noviosparis.cl/home/couple-catalog/21064653" target="_blank" rel="noopener">🔗 Ir a nuestra lista Paris</a>
       </div>
     </div>
-  </div>
-
-  <div class="section-head reveal" style="margin-top:3rem; margin-bottom:1.6rem;">
-    <span class="eyebrow">Si prefieres algo puntual</span>
-    <h2 class="display" style="font-size:clamp(1.5rem, 4vw, 1.9rem);">Nuestra lista de deseos</h2>
-    <p>Tenemos algunos artículos específicos que de verdad nos harían felices, cada uno con su link directo.</p>
-    <div class="contact-row" style="justify-content:center; margin-top:1rem;">
-      <a class="contact-link" href="#lista-especifica-modal" id="ver-lista-btn">🎁 Ver lista específica</a>
+    <div class="card" style="text-align:center;">
+      <h3>Nuestra lista de deseos</h3>
+      <p>Algunos artículos específicos que de verdad nos harían felices, cada uno con su link directo de compra.</p>
+      <div class="contact-row" style="justify-content:center; margin-top:1.2rem;">
+        <button type="button" class="contact-link" id="ver-lista-btn">🎁 Ver lista específica</button>
+      </div>
     </div>
   </div>
 </section>
@@ -801,7 +806,7 @@ Para reactivarlo: quita las marcas de comentario que envuelven esta sección.
          por ejemplo: class="card gift-card gifted" — y súbelo al repo. -->
     <div class="gift-grid">
       <div class="card gift-card" data-gift-id="gasificadora-go2">
-        <div class="gift-img"><img src="https://www.kitchencenter.cl/cdn/shop/files/maquina-gasificadora-air-pack-go2-go2-2.jpg?v=1766517400" alt="Máquina Gasificadora Air Pack GO2" loading="lazy" onerror="this.parentElement.remove()"></div>
+        <div class="gift-img"><img src="https://www.kitchencenter.cl/cdn/shop/files/maquina-gasificadora-air-pack-go2-go2-2.jpg?v=1766517400" alt="Máquina Gasificadora Air Pack GO2" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
         <div class="gift-body">
           <h3>Máquina Gasificadora Air Pack GO2</h3>
           <p class="gift-price">$149.990</p>
@@ -846,11 +851,12 @@ Para reactivarlo: quita las marcas de comentario que envuelven esta sección.
   <div class="section-head reveal">
     <span class="eyebrow">Nos encantaría contar contigo</span>
     <h2 class="display">Confirma tu asistencia</h2>
-    <p>Cuéntanos si nos acompañas — y si hay alguna restricción alimentaria, para tenerla lista ese día.</p>
+    <p>Cuéntanos quiénes van a acompañarte — y si hay alguna restricción alimentaria, para tenerla lista ese día.</p>
   </div>
 
   <!-- EDITA AQUÍ: el action ya apunta a tu formulario real de Formspree. -->
   <form id="rsvp-form" class="rsvp-form reveal" action="https://formspree.io/f/xnpndaye" method="POST">
+    <input type="hidden" name="Asistencia" value="Sí, asistiré">
     <div class="rsvp-field">
       <label for="rsvp-nombre">Nombre completo</label>
       <input type="text" id="rsvp-nombre" name="Nombre" required>
@@ -862,36 +868,20 @@ Para reactivarlo: quita las marcas de comentario que envuelven esta sección.
     </div>
 
     <div class="rsvp-field">
-      <label>¿Asistirás?</label>
-      <div class="rsvp-radio-row">
-        <label class="rsvp-radio"><input type="radio" name="Asistencia" value="Sí, asistiré" id="rsvp-asiste-si" required> Sí, ahí estaré</label>
-        <label class="rsvp-radio"><input type="radio" name="Asistencia" value="No podré asistir" id="rsvp-asiste-no" required> No podré ir</label>
-      </div>
+      <label for="rsvp-acompanantes">¿Cuántos acompañantes traes? (sin contarte a ti, máx. según tu invitación)</label>
+      <select id="rsvp-acompanantes" name="Cantidad de acompañantes">
+        <option value="0">Voy solo/a</option>
+        <option value="1">1 acompañante</option>
+        <option value="2">2 acompañantes</option>
+        <option value="3">3 acompañantes</option>
+      </select>
     </div>
 
-    <!-- Solo aparece si responde que sí asiste -->
-    <div id="rsvp-si-block" style="display:none;">
-      <div class="rsvp-field">
-        <label for="rsvp-acompanantes">¿Cuántos acompañantes traes? (sin contarte a ti, máx. según tu invitación)</label>
-        <select id="rsvp-acompanantes" name="Cantidad de acompañantes">
-          <option value="0">Voy solo/a</option>
-          <option value="1">1 acompañante</option>
-          <option value="2">2 acompañantes</option>
-          <option value="3">3 acompañantes</option>
-        </select>
-      </div>
+    <div id="rsvp-personas-container"></div>
 
-      <div id="rsvp-personas-container"></div>
-
-      <div class="rsvp-field">
-        <label for="rsvp-comentario">Algo más que quieras contarnos (opcional)</label>
-        <textarea id="rsvp-comentario" name="Comentario" rows="2"></textarea>
-      </div>
-    </div>
-
-    <!-- Solo aparece si responde que no puede ir -->
-    <div id="rsvp-no-block" style="display:none;">
-      <p style="color:var(--ink-soft); font-size:0.95rem; margin-bottom:1.4rem;">Vamos a extrañarte ese día, ¡gracias por avisarnos!</p>
+    <div class="rsvp-field">
+      <label for="rsvp-comentario">Algo más que quieras contarnos (opcional)</label>
+      <textarea id="rsvp-comentario" name="Comentario" rows="2"></textarea>
     </div>
 
     <button type="submit" class="cal-btn" style="margin-top:0.6rem;">Enviar confirmación</button>
@@ -1153,10 +1143,6 @@ esa sección (la apertura antes de ella y el cierre después de ella).
 
   const rsvpForm = document.getElementById('rsvp-form');
   const rsvpStatus = document.getElementById('rsvp-status');
-  const rsvpSi = document.getElementById('rsvp-asiste-si');
-  const rsvpNo = document.getElementById('rsvp-asiste-no');
-  const rsvpSiBlock = document.getElementById('rsvp-si-block');
-  const rsvpNoBlock = document.getElementById('rsvp-no-block');
   const rsvpAcompanantes = document.getElementById('rsvp-acompanantes');
   const rsvpPersonasContainer = document.getElementById('rsvp-personas-container');
 
@@ -1227,18 +1213,7 @@ esa sección (la apertura antes de ella y el cierre después de ella).
     }
   }
 
-  if(rsvpSi && rsvpNo){
-    rsvpSi.addEventListener('change', () => {
-      rsvpSiBlock.style.display = 'block';
-      rsvpNoBlock.style.display = 'none';
-      renderPersonas();
-    });
-    rsvpNo.addEventListener('change', () => {
-      rsvpSiBlock.style.display = 'none';
-      rsvpNoBlock.style.display = 'block';
-      rsvpPersonasContainer.innerHTML = '';
-    });
-  }
+  renderPersonas();
   if(rsvpAcompanantes){
     rsvpAcompanantes.addEventListener('change', renderPersonas);
   }
@@ -1294,6 +1269,23 @@ esa sección (la apertura antes de ella y el cierre después de ella).
     entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
   }, {threshold:0.15});
   document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+  // ---- Resaltar la sección activa en el menú de arriba ----
+  const navLinks = document.querySelectorAll('.quicknav a[href^="#"]');
+  const navTargets = Array.from(navLinks).map(link => document.getElementById(link.getAttribute('href').slice(1))).filter(Boolean);
+  if(navTargets.length){
+    const navObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          const id = entry.target.id;
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, {rootMargin: '-45% 0px -50% 0px', threshold: 0});
+    navTargets.forEach(el => navObserver.observe(el));
+  }
 
   let current = 0, score = 0;
   const optsWrap = document.getElementById('trivia-opts');

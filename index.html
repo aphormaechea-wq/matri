@@ -75,6 +75,81 @@
   .card{border:1px solid var(--line); padding:1.9rem 1.7rem; background:var(--white);}
   .card h3{font-family:'Bodoni Moda', serif; font-size:1.5rem; font-weight:500;}
   .card p{margin-top:0.35rem; color:var(--ink-soft); font-size:0.98rem;}
+  .gift-card{padding:0; overflow:hidden; display:flex; flex-direction:column;}
+  .gift-card .gift-img{width:100%; aspect-ratio:4/3; background:var(--paper); overflow:hidden;}
+  .gift-card .gift-img img{width:100%; height:100%; object-fit:cover; filter:grayscale(100%) contrast(1.05); display:block;}
+  .gift-card .gift-body{padding:1.5rem 1.5rem 1.7rem;}
+  .gift-card h3{font-family:'Bodoni Moda', serif; font-size:1.25rem; font-weight:500;}
+  .gift-card .gift-price{font-family:'Jost', sans-serif; font-size:0.85rem; letter-spacing:0.05em; color:var(--gold); margin-top:0.3rem;}
+  .gifted-badge{display:none; margin-top:0.6rem; font-family:'Jost', sans-serif; font-size:0.72rem; letter-spacing:0.05em; color:var(--ink-soft);}
+  .gift-card.gifted{opacity:0.55;}
+  .gift-card.gifted .gift-img img{filter:grayscale(100%) contrast(1.05) blur(1px);}
+  .gift-card.gifted h3{text-decoration:line-through;}
+  .gift-card.gifted .gifted-badge{display:inline-block;}
+  .gift-card.gifted .gift-mark-btn{display:none;}
+  .map-embed{margin-top:1rem; border:1px solid var(--line); overflow:hidden; aspect-ratio:4/3; background:var(--paper);}
+  .map-embed iframe{width:100%; height:100%; border:0; filter:grayscale(35%) contrast(1.05);}
+
+  .rsvp-form{max-width:560px; margin:0 auto;}
+  .rsvp-field{margin-bottom:1.6rem;}
+  .rsvp-field label{
+    display:block; font-family:'Jost', sans-serif; font-size:0.68rem; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--ink-soft); margin-bottom:0.5rem;
+  }
+  .rsvp-field input[type="text"], .rsvp-field input[type="email"], .rsvp-field select, .rsvp-field textarea{
+    width:100%; border:none; border-bottom:1px solid var(--line); background:transparent;
+    font-family:'EB Garamond', serif; font-size:1rem; color:var(--ink); padding:0.5rem 0.1rem;
+    resize:vertical; transition:border-color .2s;
+  }
+  .rsvp-field input:focus, .rsvp-field select:focus, .rsvp-field textarea:focus{
+    outline:none; border-bottom-color:var(--ink);
+  }
+  .rsvp-radio-row{display:flex; gap:1.6rem; flex-wrap:wrap;}
+  .rsvp-radio{
+    display:flex; align-items:center; gap:0.5rem; font-family:'EB Garamond', serif;
+    font-size:0.95rem; color:var(--ink); text-transform:none; letter-spacing:0; cursor:pointer;
+  }
+  .rsvp-radio input{accent-color:var(--ink); width:16px; height:16px;}
+
+  .persona-block{
+    border:1px solid var(--line); padding:1.4rem 1.4rem 1rem; margin-bottom:1.6rem; background:var(--paper);
+  }
+  .persona-block h4{
+    font-family:'Bodoni Moda', serif; font-size:1.05rem; font-weight:500; margin-bottom:1rem;
+  }
+  .rsvp-check-row{display:flex; flex-wrap:wrap; gap:0.9rem 1.4rem; margin-bottom:0.8rem;}
+  .rsvp-check{
+    display:flex; align-items:center; gap:0.5rem; font-family:'EB Garamond', serif;
+    font-size:0.92rem; color:var(--ink); cursor:pointer;
+  }
+  .rsvp-check input{accent-color:var(--ink); width:15px; height:15px;}
+  .rsvp-alergia-detalle{display:none; margin-top:0.6rem;}
+  .rsvp-alergia-detalle.show{display:block;}
+  .rsvp-alergia-detalle input{
+    width:100%; border:none; border-bottom:1px solid var(--line); background:transparent;
+    font-family:'EB Garamond', serif; font-size:0.92rem; color:var(--ink); padding:0.4rem 0.1rem;
+  }
+  .rsvp-alergia-detalle input:focus{outline:none; border-bottom-color:var(--ink);}
+
+  .modal-overlay{
+    position:fixed; inset:0; z-index:80; background:rgba(26,26,24,0.55);
+    display:none; align-items:flex-start; justify-content:center;
+    padding:5vh 1.2rem; overflow-y:auto;
+  }
+  .modal-overlay.open{display:flex;}
+  .modal-panel{
+    position:relative; background:var(--white); max-width:800px; width:100%;
+    padding:2.4rem 1.6rem 2.6rem; margin-bottom:5vh;
+    animation:modalIn .25s ease;
+  }
+  @keyframes modalIn{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:none;} }
+  @media (prefers-reduced-motion: reduce){ .modal-panel{animation:none;} }
+  .modal-close{
+    position:absolute; top:0.8rem; right:1rem; border:none; background:transparent;
+    font-size:1.8rem; line-height:1; color:var(--ink-soft); cursor:pointer; padding:0.4rem;
+  }
+  .modal-close:hover, .modal-close:focus-visible{color:var(--ink);}
+  body.modal-open{overflow:hidden;}
   .code-row{margin-top:1rem; display:flex; align-items:center; gap:0.8rem; flex-wrap:wrap;}
   .contact-row{margin-top:1.1rem; display:flex; gap:0.6rem; flex-wrap:wrap;}
   .contact-link{
@@ -129,6 +204,20 @@
     box-shadow:0 2px 10px rgba(0,0,0,0.12); transition:background .2s, color .2s;
   }
   .music-btn svg{width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
+
+  .quicknav{
+    position:sticky; top:0; z-index:40; background:rgba(255,255,255,0.94);
+    backdrop-filter:blur(6px); border-bottom:1px solid var(--line);
+    display:flex; gap:1.4rem; overflow-x:auto; white-space:nowrap;
+    padding:0.9rem 1.2rem; scrollbar-width:none;
+  }
+  .quicknav::-webkit-scrollbar{display:none;}
+  .quicknav a{
+    font-family:'Jost', sans-serif; font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink-soft); text-decoration:none; flex:0 0 auto; transition:color .2s;
+  }
+  .quicknav a:hover, .quicknav a:focus-visible{color:var(--ink);}
+  html{scroll-padding-top:56px;}
 
   @media (min-width:640px){
     .cards{grid-template-columns:1fr 1fr;}
@@ -187,7 +276,16 @@
 </head>
 <body>
 
-<section class="hero">
+<nav class="quicknav" id="quicknav">
+  <a href="#top">Inicio</a>
+  <a href="#ubicacion">Ubicación</a>
+  <a href="#hospedaje">Hospedaje</a>
+  <a href="#tips">Tips</a>
+  <a href="#regalos">Regalos</a>
+  <a href="#confirmacion">Confirmar</a>
+</nav>
+
+<section class="hero" id="top">
   <span class="eyebrow">Matrimonio</span>
   <h1>Ita <em>&amp;</em> Ricky</h1>
   <div class="date-place">16 · 01 · 2027 — Puerto Varas</div>
@@ -213,6 +311,41 @@
     <div class="clock"><span class="num" id="cd-secs">00</span><span class="lab">Seg</span></div>
   </div>
   <button class="cal-btn" id="cal-btn">Agenda en tu calendario</button>
+</section>
+
+<hr class="hair reveal">
+
+<section id="ubicacion">
+  <div class="section-head reveal">
+    <span class="eyebrow">Dónde encontrarnos</span>
+    <h2 class="display">Ubicación</h2>
+    <p>La ceremonia y la celebración serán en dos lugares distintos — aquí tienes el mapa y el link directo a Waze para cada uno.</p>
+  </div>
+  <div class="cards reveal">
+    <div class="card">
+      <h3>Parroquia Sagrado Corazón de Jesús</h3>
+      <p>Verbo Divino 499, Puerto Varas — la ceremonia religiosa.</p>
+      <div class="map-embed">
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-73.001162%2C-41.330718%2C-72.971162%2C-41.310718&layer=mapnik&marker=-41.320718%2C-72.986162" loading="lazy" title="Mapa Parroquia Sagrado Corazón de Jesús"></iframe>
+      </div>
+      <div class="contact-row">
+        <a class="contact-link" href="https://waze.com/ul?ll=-41.320718,-72.986162&navigate=yes" target="_blank" rel="noopener">🚗 Abrir en Waze</a>
+        <a class="contact-link" href="https://www.google.com/maps/search/?api=1&query=-41.320718,-72.986162" target="_blank" rel="noopener">📍 Ver en Maps</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>La Fragua</h3>
+      <p>Ruta U-95 Km 4, sector Coñico, Purranque — la celebración.</p>
+      <div class="map-embed">
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-73.1058355519993%2C-40.95975377872807%2C-73.0758355519993%2C-40.92975377872807&layer=mapnik&marker=-40.94475377872807%2C-73.0908355519993" loading="lazy" title="Mapa La Fragua, Purranque"></iframe>
+      </div>
+      <div class="contact-row">
+        <a class="contact-link" href="https://waze.com/ul?ll=-40.94475377872807,-73.0908355519993&navigate=yes" target="_blank" rel="noopener">🚗 Abrir en Waze</a>
+        <a class="contact-link" href="https://www.google.com/maps/search/?api=1&query=-40.94475377872807,-73.0908355519993" target="_blank" rel="noopener">📍 Ver en Maps</a>
+      </div>
+    </div>
+  </div>
+  <p style="text-align:center; margin-top:1.6rem; color:var(--ink-soft); font-size:0.88rem;">Entre ambos lugares hay aproximadamente <strong>55 km</strong>, unos <strong>40–45 minutos</strong> en auto.</p>
 </section>
 
 <hr class="hair reveal">
@@ -617,40 +750,161 @@ Para reactivarlo: quita las marcas de comentario que envuelven esta sección.
   </div>
 </section>
 
-<!--
-Regalos, Trivia y Novedades quedan ocultos por ahora (aún no definidos).
-Para reactivar cualquiera: quita las marcas de comentario que envuelven
-esa sección (la apertura antes de ella y el cierre después de ella).
-
 <hr class="hair reveal">
 
 <section id="regalos">
   <div class="section-head reveal">
     <span class="eyebrow">Si quieres tener un gesto con nosotros</span>
     <h2 class="display">Regalos</h2>
-    <p>Tu presencia es lo más importante. Si además quieres hacernos un regalo, puedes encontrarnos en:</p>
+    <p>Tu presencia es lo más importante para nosotros. Si además quieres hacernos un regalo, nos encantaría que fuera a través de nuestra lista de novios en Paris, o alguno de los artículos puntuales que dejamos abajo. Preferimos no recibir regalos físicos fuera de estas opciones — si tienes algo distinto en mente, escríbenos antes y lo vemos juntos.</p>
   </div>
-  <div class="gift-grid reveal">
-    <div class="card">
-      <h3>Falabella — Lista de Novios</h3>
-      <p>[Nombre de la lista o link de búsqueda]</p>
-      <div class="code-row">
-        <span class="code" id="code-falabella">ITA-RICKY-2027</span>
-        <button class="copy-btn" data-copy="code-falabella">Copiar código</button>
+
+  <div class="cards reveal">
+    <div class="card" style="text-align:center;">
+      <h3>Lista de Novios Paris</h3>
+      <p>Compartimos nuestro código de novios. Sirve para dos cosas: para que nos hagan regalos de nuestra lista en Paris y paris.cl, y para que esas compras sumen a nuestro bono de Puntos Cencosud.</p>
+      <div class="code-row" style="justify-content:center; margin-top:1.2rem;">
+        <span class="code" id="code-paris">21064653</span>
+        <button class="copy-btn" data-copy="code-paris">Copiar código</button>
+      </div>
+      <div class="contact-row" style="justify-content:center;">
+        <a class="contact-link" href="https://www.noviosparis.cl/home/couple-catalog/21064653" target="_blank" rel="noopener">🔗 Ir a nuestra lista Paris</a>
       </div>
     </div>
-    <div class="card">
-      <h3>[Otra tienda / lista]</h3>
-      <p>[Descripción breve]</p>
-      <div class="code-row">
-        <span class="code" id="code-otra">PENDIENTE</span>
-        <button class="copy-btn" data-copy="code-otra">Copiar código</button>
-      </div>
+  </div>
+
+  <div class="section-head reveal" style="margin-top:3rem; margin-bottom:1.6rem;">
+    <span class="eyebrow">Si prefieres algo puntual</span>
+    <h2 class="display" style="font-size:clamp(1.5rem, 4vw, 1.9rem);">Nuestra lista de deseos</h2>
+    <p>Tenemos algunos artículos específicos que de verdad nos harían felices, cada uno con su link directo.</p>
+    <div class="contact-row" style="justify-content:center; margin-top:1rem;">
+      <a class="contact-link" href="#lista-especifica-modal" id="ver-lista-btn">🎁 Ver lista específica</a>
     </div>
   </div>
 </section>
 
+<!-- Ventana modal con la lista específica de regalos -->
+<div class="modal-overlay" id="lista-especifica-modal" aria-hidden="true">
+  <div class="modal-panel">
+    <button class="modal-close" id="lista-especifica-close" aria-label="Cerrar">&times;</button>
+    <div class="section-head reveal in" style="margin-bottom:1.8rem;">
+      <span class="eyebrow">Nuestra lista de deseos</span>
+      <h2 class="display">Artículos puntuales</h2>
+      <p>Si compras algo de aquí, toca "Ya la compré" para avisarnos por WhatsApp — así lo marcamos como regalado.</p>
+    </div>
+    <!-- EDITA AQUÍ: agrega o cambia los artículos de la lista de deseos.
+         Copia una tarjeta completa (desde <div class="card gift-card"> hasta
+         el </div> de cierre) por cada artículo nuevo.
+         Reemplaza el número de WhatsApp (56912345678) por el real.
+         Para marcar un artículo como YA REGALADO para todos los visitantes,
+         agrégale la clase "gifted" a su <div class="card gift-card ..."> —
+         por ejemplo: class="card gift-card gifted" — y súbelo al repo. -->
+    <div class="gift-grid">
+      <div class="card gift-card" data-gift-id="gasificadora-go2">
+        <div class="gift-img"><img src="https://www.kitchencenter.cl/cdn/shop/files/maquina-gasificadora-air-pack-go2-go2-2.jpg?v=1766517400" alt="Máquina Gasificadora Air Pack GO2" loading="lazy" onerror="this.parentElement.remove()"></div>
+        <div class="gift-body">
+          <h3>Máquina Gasificadora Air Pack GO2</h3>
+          <p class="gift-price">$149.990</p>
+          <span class="gifted-badge">🎁 Ya fue regalado</span>
+          <div class="contact-row">
+            <a class="contact-link" href="https://www.kitchencenter.cl/products/maquina-gasificadora-air-pack-go2-machine?variant=40159540740151" target="_blank" rel="noopener">🔗 Ver y comprar</a>
+            <a class="contact-link gift-mark-btn" href="https://wa.me/56912345678?text=%C2%A1Hola!%20Compr%C3%A9%20la%20M%C3%A1quina%20Gasificadora%20Air%20Pack%20GO2%20de%20su%20lista%20de%20regalos%20%F0%9F%8E%81" target="_blank" rel="noopener">✅ Ya la compré</a>
+          </div>
+        </div>
+      </div>
+      <div class="card gift-card" data-gift-id="articulo-2">
+        <div class="gift-img"><img src="" alt="[Nombre del artículo]" loading="lazy" onerror="this.parentElement.remove()"></div>
+        <div class="gift-body">
+          <h3>[Nombre del artículo]</h3>
+          <p class="gift-price">[$Precio]</p>
+          <span class="gifted-badge">🎁 Ya fue regalado</span>
+          <div class="contact-row">
+            <a class="contact-link" href="#" target="_blank" rel="noopener">🔗 Ver y comprar</a>
+            <a class="contact-link gift-mark-btn" href="https://wa.me/56912345678?text=%C2%A1Hola!%20Compr%C3%A9%20%5Bnombre%20del%20art%C3%ADculo%5D%20de%20su%20lista%20de%20regalos%20%F0%9F%8E%81" target="_blank" rel="noopener">✅ Ya la compré</a>
+          </div>
+        </div>
+      </div>
+      <div class="card gift-card" data-gift-id="articulo-3">
+        <div class="gift-img"><img src="" alt="[Nombre del artículo]" loading="lazy" onerror="this.parentElement.remove()"></div>
+        <div class="gift-body">
+          <h3>[Nombre del artículo]</h3>
+          <p class="gift-price">[$Precio]</p>
+          <span class="gifted-badge">🎁 Ya fue regalado</span>
+          <div class="contact-row">
+            <a class="contact-link" href="#" target="_blank" rel="noopener">🔗 Ver y comprar</a>
+            <a class="contact-link gift-mark-btn" href="https://wa.me/56912345678?text=%C2%A1Hola!%20Compr%C3%A9%20%5Bnombre%20del%20art%C3%ADculo%5D%20de%20su%20lista%20de%20regalos%20%F0%9F%8E%81" target="_blank" rel="noopener">✅ Ya la compré</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <hr class="hair reveal">
+
+<section id="confirmacion" style="padding-top:2rem; padding-bottom:2rem;">
+  <div class="section-head reveal">
+    <span class="eyebrow">Nos encantaría contar contigo</span>
+    <h2 class="display">Confirma tu asistencia</h2>
+    <p>Cuéntanos si nos acompañas — y si hay alguna restricción alimentaria, para tenerla lista ese día.</p>
+  </div>
+
+  <!-- EDITA AQUÍ: el action ya apunta a tu formulario real de Formspree. -->
+  <form id="rsvp-form" class="rsvp-form reveal" action="https://formspree.io/f/xnpndaye" method="POST">
+    <div class="rsvp-field">
+      <label for="rsvp-nombre">Nombre completo</label>
+      <input type="text" id="rsvp-nombre" name="Nombre" required>
+    </div>
+
+    <div class="rsvp-field">
+      <label for="rsvp-email">Correo (opcional, por si necesitamos escribirte)</label>
+      <input type="email" id="rsvp-email" name="Correo">
+    </div>
+
+    <div class="rsvp-field">
+      <label>¿Asistirás?</label>
+      <div class="rsvp-radio-row">
+        <label class="rsvp-radio"><input type="radio" name="Asistencia" value="Sí, asistiré" id="rsvp-asiste-si" required> Sí, ahí estaré</label>
+        <label class="rsvp-radio"><input type="radio" name="Asistencia" value="No podré asistir" id="rsvp-asiste-no" required> No podré ir</label>
+      </div>
+    </div>
+
+    <!-- Solo aparece si responde que sí asiste -->
+    <div id="rsvp-si-block" style="display:none;">
+      <div class="rsvp-field">
+        <label for="rsvp-acompanantes">¿Cuántos acompañantes traes? (sin contarte a ti, máx. según tu invitación)</label>
+        <select id="rsvp-acompanantes" name="Cantidad de acompañantes">
+          <option value="0">Voy solo/a</option>
+          <option value="1">1 acompañante</option>
+          <option value="2">2 acompañantes</option>
+          <option value="3">3 acompañantes</option>
+        </select>
+      </div>
+
+      <div id="rsvp-personas-container"></div>
+
+      <div class="rsvp-field">
+        <label for="rsvp-comentario">Algo más que quieras contarnos (opcional)</label>
+        <textarea id="rsvp-comentario" name="Comentario" rows="2"></textarea>
+      </div>
+    </div>
+
+    <!-- Solo aparece si responde que no puede ir -->
+    <div id="rsvp-no-block" style="display:none;">
+      <p style="color:var(--ink-soft); font-size:0.95rem; margin-bottom:1.4rem;">Vamos a extrañarte ese día, ¡gracias por avisarnos!</p>
+    </div>
+
+    <button type="submit" class="cal-btn" style="margin-top:0.6rem;">Enviar confirmación</button>
+    <p id="rsvp-status" style="margin-top:1rem; font-size:0.85rem; color:var(--ink-soft);"></p>
+  </form>
+</section>
+
+<hr class="hair reveal">
+
+<!--
+Trivia y Novedades quedan ocultos por ahora (aún no definidos).
+Para reactivar cualquiera: quita las marcas de comentario que envuelven
+esa sección (la apertura antes de ella y el cierre después de ella).
 
 <section id="trivia">
   <div class="section-head reveal">
@@ -694,7 +948,7 @@ esa sección (la apertura antes de ella y el cierre después de ella).
     <h2 class="display">Próximamente</h2>
   </div>
   <div class="soon reveal">
-    <p>Transporte, horarios, ubicaciones, lista de regalos y mucho más — esta página se irá completando a medida que se acerque la fecha. Vuelve a revisarla más adelante.</p>
+    <p>Transporte, horarios y mucho más — esta página se irá completando a medida que se acerque la fecha. Vuelve a revisarla más adelante.</p>
   </div>
 </section>
 
@@ -866,6 +1120,149 @@ esa sección (la apertura antes de ella y el cierre después de ella).
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
+    });
+  }
+
+
+  // ---- Modal: lista específica de regalos ----
+  const verListaBtn = document.getElementById('ver-lista-btn');
+  const listaModal = document.getElementById('lista-especifica-modal');
+  if(verListaBtn && listaModal){
+    const openModal = (e) => {
+      if(e) e.preventDefault();
+      listaModal.classList.add('open');
+      listaModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+    };
+    const closeModal = () => {
+      listaModal.classList.remove('open');
+      listaModal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+    };
+    verListaBtn.addEventListener('click', openModal);
+    const closeBtn = document.getElementById('lista-especifica-close');
+    if(closeBtn) closeBtn.addEventListener('click', closeModal);
+    listaModal.addEventListener('click', (e) => {
+      if(e.target === listaModal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape' && listaModal.classList.contains('open')) closeModal();
+    });
+  }
+
+
+  const rsvpForm = document.getElementById('rsvp-form');
+  const rsvpStatus = document.getElementById('rsvp-status');
+  const rsvpSi = document.getElementById('rsvp-asiste-si');
+  const rsvpNo = document.getElementById('rsvp-asiste-no');
+  const rsvpSiBlock = document.getElementById('rsvp-si-block');
+  const rsvpNoBlock = document.getElementById('rsvp-no-block');
+  const rsvpAcompanantes = document.getElementById('rsvp-acompanantes');
+  const rsvpPersonasContainer = document.getElementById('rsvp-personas-container');
+
+  const RESTRICCIONES = ['Vegetariano', 'Vegano', 'Sin gluten', 'Alergias', 'Ninguna'];
+
+  function buildPersonaBlock(index, label){
+    const wrap = document.createElement('div');
+    wrap.className = 'persona-block';
+
+    let nameField = '';
+    if(index > 0){
+      nameField = `
+        <div class="rsvp-field" style="margin-bottom:0.9rem;">
+          <label for="rsvp-p${index}-nombre">Nombre del acompañante</label>
+          <input type="text" id="rsvp-p${index}-nombre" name="Persona ${index+1} - Nombre">
+        </div>`;
+    }
+
+    const checksHtml = RESTRICCIONES.map((r, i) => `
+      <label class="rsvp-check">
+        <input type="checkbox" name="Persona ${index+1} (${label}) - Restricciones" value="${r}" data-persona="${index}" ${r === 'Alergias' ? 'class="alergia-check"' : ''}>
+        ${r}
+      </label>`).join('');
+
+    wrap.innerHTML = `
+      <h4>${label}</h4>
+      ${nameField}
+      <label style="display:block; font-family:'Jost', sans-serif; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:0.6rem;">Restricción alimentaria</label>
+      <div class="rsvp-check-row">${checksHtml}</div>
+      <div class="rsvp-alergia-detalle" id="rsvp-p${index}-alergia-detalle">
+        <label for="rsvp-p${index}-alergia-texto">¿Cuál alergia?</label>
+        <input type="text" id="rsvp-p${index}-alergia-texto" name="Persona ${index+1} (${label}) - Detalle alergia">
+      </div>
+    `;
+
+    const alergiaCheck = wrap.querySelector('.alergia-check');
+    const alergiaDetalle = wrap.querySelector(`#rsvp-p${index}-alergia-detalle`);
+    if(alergiaCheck){
+      alergiaCheck.addEventListener('change', () => {
+        alergiaDetalle.classList.toggle('show', alergiaCheck.checked);
+      });
+    }
+
+    // "Ninguna" desmarca las demás y viceversa, para datos más limpios
+    const checkboxes = wrap.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', () => {
+        if(cb.value === 'Ninguna' && cb.checked){
+          checkboxes.forEach(other => { if(other !== cb) other.checked = false; });
+          if(alergiaDetalle) alergiaDetalle.classList.remove('show');
+        } else if(cb.checked){
+          const ninguna = Array.from(checkboxes).find(c => c.value === 'Ninguna');
+          if(ninguna) ninguna.checked = false;
+        }
+      });
+    });
+
+    return wrap;
+  }
+
+  function renderPersonas(){
+    if(!rsvpPersonasContainer) return;
+    rsvpPersonasContainer.innerHTML = '';
+    rsvpPersonasContainer.appendChild(buildPersonaBlock(0, 'Tú'));
+    const extra = parseInt(rsvpAcompanantes.value, 10) || 0;
+    for(let i = 1; i <= extra; i++){
+      rsvpPersonasContainer.appendChild(buildPersonaBlock(i, `Acompañante ${i}`));
+    }
+  }
+
+  if(rsvpSi && rsvpNo){
+    rsvpSi.addEventListener('change', () => {
+      rsvpSiBlock.style.display = 'block';
+      rsvpNoBlock.style.display = 'none';
+      renderPersonas();
+    });
+    rsvpNo.addEventListener('change', () => {
+      rsvpSiBlock.style.display = 'none';
+      rsvpNoBlock.style.display = 'block';
+      rsvpPersonasContainer.innerHTML = '';
+    });
+  }
+  if(rsvpAcompanantes){
+    rsvpAcompanantes.addEventListener('change', renderPersonas);
+  }
+
+  if(rsvpForm){
+    rsvpForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      rsvpStatus.textContent = 'Enviando…';
+      try{
+        const res = await fetch(rsvpForm.action, {
+          method: 'POST',
+          body: new FormData(rsvpForm),
+          headers: {'Accept': 'application/json'}
+        });
+        if(res.ok){
+          rsvpForm.reset();
+          rsvpForm.style.display = 'none';
+          rsvpStatus.textContent = '¡Gracias por confirmar! Ya quedó registrado.';
+        } else {
+          rsvpStatus.textContent = 'Hubo un problema al enviar. Intenta de nuevo o escríbenos directo.';
+        }
+      } catch(err){
+        rsvpStatus.textContent = 'Hubo un problema al enviar. Intenta de nuevo o escríbenos directo.';
+      }
     });
   }
 

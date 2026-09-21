@@ -96,25 +96,35 @@
   .route-illustration img{width:100%; height:auto; display:block; filter:contrast(1.05);}
   .route-distance{margin-top:1.4rem; color:var(--ink-soft); font-size:0.88rem; text-align:center;}
 
-  .route-scene{position:relative; max-width:1100px; margin:2.6rem auto 0;}
-  .route-scene > img{width:100%; height:auto; display:block; filter:contrast(1.05);}
+  .route-header{
+    display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto auto;
+    column-gap:2rem; row-gap:0.4rem; max-width:1100px; margin:0 auto; padding:0 1.5rem;
+  }
+  .rh-title{font-family:'Bodoni Moda', serif; font-size:1.25rem; font-weight:500; line-height:1.2;}
+  .rh-address{color:var(--ink-soft); font-size:0.9rem;}
+  .rh-buttons{margin-top:0.3rem;}
+  .rh-left{grid-column:1; text-align:left;}
+  .rh-right{grid-column:2; text-align:right;}
+  .rh-title.rh-left{grid-row:1;}
+  .rh-title.rh-right{grid-row:1;}
+  .rh-address.rh-left{grid-row:2;}
+  .rh-address.rh-right{grid-row:2;}
+  .rh-buttons.rh-left{grid-row:3; justify-content:flex-start;}
+  .rh-buttons.rh-right{grid-row:3; justify-content:flex-end;}
 
-  /* En celular: la imagen arriba, los textos apilados debajo (sin overlay) */
-  .route-caption{margin-top:1.6rem; text-align:center; padding:0 1rem;}
-  .route-caption h3{font-family:'Bodoni Moda', serif; font-size:1.3rem; font-weight:500;}
-  .route-caption p{margin-top:0.35rem; color:var(--ink-soft); font-size:0.92rem;}
-  .route-caption .contact-row{margin-top:0.9rem;}
+  .route-scene{max-width:1100px; margin:1rem auto 0;}
+  .route-scene img{width:100%; height:auto; display:block; filter:contrast(1.05);}
 
-  /* En pantallas grandes: el texto flota encima de la ilustración, sin cuadros */
-  @media (min-width:820px){
-    .route-caption{
-      position:absolute; top:4%; margin-top:0; width:30%; padding:0;
-    }
-    .route-caption.left{left:1%; text-align:left;}
-    .route-caption.right{right:1%; text-align:right;}
-    .route-caption.left .contact-row, .route-caption.right .contact-row{justify-content:flex-start;}
-    .route-caption.right .contact-row{justify-content:flex-end;}
-    .route-caption h3{font-size:1.5rem;}
+  @media (max-width:700px){
+    .route-header{grid-template-columns:1fr; row-gap:0.5rem; padding:0 1rem;}
+    .rh-left, .rh-right{grid-column:1; text-align:center;}
+    .rh-buttons.rh-left, .rh-buttons.rh-right{justify-content:center;}
+    .rh-title.rh-left{grid-row:1;}
+    .rh-address.rh-left{grid-row:2;}
+    .rh-buttons.rh-left{grid-row:3; margin-bottom:1.4rem;}
+    .rh-title.rh-right{grid-row:4;}
+    .rh-address.rh-right{grid-row:5;}
+    .rh-buttons.rh-right{grid-row:6;}
   }
 
   .rsvp-form{max-width:560px; margin:0 auto;}
@@ -353,26 +363,23 @@
 
   <!-- EDITA AQUÍ: sube camino.png a una carpeta "ilustraciones" en tu repo
        (mismo proceso que hiciste con las fotos) -->
-  <div class="route-scene reveal">
+  <div class="route-header reveal">
+    <h3 class="rh-title rh-left">Parroquia Sagrado Corazón de Jesús</h3>
+    <h3 class="rh-title rh-right">La Fragua</h3>
+    <p class="rh-address rh-left">Verbo Divino 499, Puerto Varas — la ceremonia religiosa.</p>
+    <p class="rh-address rh-right">Ruta U-95 Km 4, sector Coñico, Purranque — la recepción.</p>
+    <div class="contact-row rh-buttons rh-left">
+      <a class="contact-link" href="https://waze.com/ul?ll=-41.320718,-72.986162&navigate=yes" target="_blank" rel="noopener">🚗 Abrir en Waze</a>
+      <a class="contact-link" href="https://www.google.com/maps/search/?api=1&query=-41.320718,-72.986162" target="_blank" rel="noopener">📍 Ver en Maps</a>
+    </div>
+    <div class="contact-row rh-buttons rh-right">
+      <a class="contact-link" href="https://waze.com/ul?ll=-40.94475377872807,-73.0908355519993&navigate=yes" target="_blank" rel="noopener">🚗 Abrir en Waze</a>
+      <a class="contact-link" href="https://www.google.com/maps/search/?api=1&query=-40.94475377872807,-73.0908355519993" target="_blank" rel="noopener">📍 Ver en Maps</a>
+    </div>
+  </div>
+
+  <div class="route-scene">
     <img src="ilustraciones/camino.png" alt="Ilustración del trayecto entre la Parroquia y La Fragua" loading="lazy">
-
-    <div class="route-caption left">
-      <h3>Parroquia Sagrado Corazón de Jesús</h3>
-      <p>Verbo Divino 499, Puerto Varas — la ceremonia religiosa.</p>
-      <div class="contact-row">
-        <a class="contact-link" href="https://waze.com/ul?ll=-41.320718,-72.986162&navigate=yes" target="_blank" rel="noopener">🚗 Abrir en Waze</a>
-        <a class="contact-link" href="https://www.google.com/maps/search/?api=1&query=-41.320718,-72.986162" target="_blank" rel="noopener">📍 Ver en Maps</a>
-      </div>
-    </div>
-
-    <div class="route-caption right">
-      <h3>La Fragua</h3>
-      <p>Ruta U-95 Km 4, sector Coñico, Purranque — la recepción.</p>
-      <div class="contact-row">
-        <a class="contact-link" href="https://waze.com/ul?ll=-40.94475377872807,-73.0908355519993&navigate=yes" target="_blank" rel="noopener">🚗 Abrir en Waze</a>
-        <a class="contact-link" href="https://www.google.com/maps/search/?api=1&query=-40.94475377872807,-73.0908355519993" target="_blank" rel="noopener">📍 Ver en Maps</a>
-      </div>
-    </div>
   </div>
 
   <p class="route-distance">Entre ambos lugares hay aproximadamente <strong>55 km</strong>, unos <strong>40–45 minutos</strong> en auto.</p>
